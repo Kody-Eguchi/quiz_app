@@ -1,5 +1,7 @@
 // Client facing scripts here
 $(() => {
+
+
   $('#fetch-users').on('click', () => {
     $.ajax({
       method: 'GET',
@@ -14,4 +16,17 @@ $(() => {
       }
     });
   });
+
+
+  //renderQuizzes
+  const renderQuizzes = function() {
+
+  };
+
+  //loadQuizzes
+  const loadQuizzes = function() {
+
+  };
+
+
 });
