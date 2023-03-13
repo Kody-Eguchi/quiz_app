@@ -6,6 +6,7 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -38,6 +39,12 @@ const usersRoutes = require('./routes/users');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
+
+//list of api end point
+/*
+
+*/
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -45,7 +52,7 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index')
 });
 
 app.listen(PORT, () => {
