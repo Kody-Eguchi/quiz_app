@@ -10,7 +10,7 @@ const router  = express.Router();
 const db = require('../db/connection');
 
 router.get('/', (req, res) => {
-  const query = `SELECT * FROM quizzes;`;
+  const query = `SELECT * FROM quizzes WHERE is_public = TRUE;`;
   console.log(query);
   db.query(query)
     .then(data => {
