@@ -32,6 +32,7 @@ app.use(express.static('public'));
 const userApiRoutes = require('./routes/users-api');
 const quizzesApiRoutes = require('./routes/quizzes-api');
 const usersRoutes = require('./routes/users');
+const quizResultsApiRoutes = require('./routes/quiz_results-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -39,7 +40,7 @@ const usersRoutes = require('./routes/users');
 app.use('/api/users', userApiRoutes);
 app.use('/api/quizzes', quizzesApiRoutes);
 app.use('/users', usersRoutes);
-
+app.use('/api/quiz_results', quizResultsApiRoutes);
 //list of api end point
 /*
 
