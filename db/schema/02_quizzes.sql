@@ -7,6 +7,5 @@ CREATE TABLE quizzes (
   category VARCHAR(255) NOT NULL,
   name VARCHAR(255) NOT NULL,
   num_of_question INTEGER DEFAULT 0,
-  is_public BOOLEAN DEFAULT TRUE,
-  quiz_url VARCHAR(255) NOT NULL
+  is_public BOOLEAN DEFAULT TRUE
 );

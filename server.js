@@ -39,7 +39,6 @@ const takeQuizRoutes = require('./routes/take_quiz');
 
 
 const quizResultsApiRoutes = require('./routes/quiz_results-api');
-const questionsApiRoutes = require('./routes/questions-api');
 const answeredQuestionsApiRoutes = require('./routes/answered_questions-api');
 
 
@@ -56,7 +55,6 @@ app.use('/take_quiz', takeQuizRoutes);
 
 
 app.use('/api/quiz_results', quizResultsApiRoutes);
-app.use('/api/questions', questionsApiRoutes);
 app.use('/api/answered_questions', answeredQuestionsApiRoutes);
 //list of api end point
 /*

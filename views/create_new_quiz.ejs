@@ -15,38 +15,39 @@
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/create_new_quiz.js"></script>
 </head>
 
 <body>
   <!-- QUIZ FORM -->
   <div>
-    <form action='/create_new_quiz' method="POST">
+    <form id="quiz-info-form" action='/create_new_quiz' method="POST">
       <label for="quiz-title-input">Title</label>
-      <input type="text" placeholder="Quiz Title" class="quiz-title-input">
+      <input type="text" placeholder="Quiz Title" class="quiz-title-input" name="quiz-name">
       <label for="category">Category</label>
 
       <!--RADIO BUTTONS -->
-      <input type="radio" class="quiz-category" value="music" name="category-name">
+      <input type="radio" class="quiz-category" value="music" name="quiz-category">
       <label for="music-category">Music</label>
 
-      <input type="radio" class="quiz-category" value="arts" name="category-name">
+      <input type="radio" class="quiz-category" value="arts" name="quiz-category">
       <label for="arts-category">Arts</label>
 
-      <input type="radio" class="quiz-category" value="science" name="category-name">
+      <input type="radio" class="quiz-category" value="science" name="quiz-category">
       <label for="science-category">Science</label>
 
-      <input type="radio" class="quiz-category" value="math" name="category-name">
+      <input type="radio" class="quiz-category" value="math" name="quiz-category">
       <label for="math-category">Math</label>
 
-      <input type="radio" class="quiz-category" value="history" name="category-name">
+      <input type="radio" class="quiz-category" value="history" name="quiz-category">
       <label for="history-category">History</label>
 
-      <input type="radio" class="quiz-category" value="other" name="category-name">
+      <input type="radio" class="quiz-category" value="other" name="quiz-category">
       <label for="other-category">Other</label>
 
       <label for="quiz-description">Descripton</label>
-      <textarea id="quiz-description" placeholder="Quiz Description Here..."></textarea>
-      <p>Make your quiz private</p>
+      <textarea id="quiz-description" placeholder="Quiz Description Here..." name="quiz-description"></textarea>
+      <p>Make your quiz public</p>
       <input type="radio" class="quiz-is_public" value="FALSE" name="quiz-is_public">
       <label for="is_public">No</label>
       <input type="radio" class="quiz-is_public" value="TRUE" name="quiz-is_public">
@@ -57,18 +58,18 @@
   </div>
   <!-- QUESTION FORM -->
   <div>
-    <form action="/create_new_quiz" method="POST">
+    <form id="quiz-question-form" action="/create_new_quiz" method="POST">
       <label for="question-input">Question</label>
-      <input type="text" placeholder="Write your question here...">
+      <input name='question' type="text" placeholder="Write your question here...">
 
       <label for="answers">Answer Options</label>
-      <input type="text" placeholder="Write answer option 1 ...">
-      <input type="text" placeholder="Write answer option 2 ...">
-      <input type="text" placeholder="Write answer option 3 ...">
-      <input type="text" placeholder="Write answer option 4 ...">
+      <input name="option1" type="text" placeholder="Write answer option 1...">
+      <input name="option2" type="text" placeholder="Write answer option 2...">
+      <input name="option3" type="text" placeholder="Write answer option 3...">
+      <input name="option4" type="text" placeholder="Write answer option 4...">
 
       <label for="answers">Correct Answer</label>
-      <input type="text">
+      <input name="correct-answer" type="text" placeholder="Correct answer here...">
 
 
       <button type="submit">Add</button>
