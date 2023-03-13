@@ -18,7 +18,62 @@
 </head>
 
 <body>
-  <h1>create_new</h1>
+  <!-- QUIZ FORM -->
+  <div>
+    <form action='/create_new_quiz' method="POST">
+      <label for="quiz-title-input">Title</label>
+      <input type="text" placeholder="Quiz Title" class="quiz-title-input">
+      <label for="category">Category</label>
+
+      <!--RADIO BUTTONS -->
+      <input type="radio" class="quiz-category" value="music" name="category-name">
+      <label for="music-category">Music</label>
+
+      <input type="radio" class="quiz-category" value="arts" name="category-name">
+      <label for="arts-category">Arts</label>
+
+      <input type="radio" class="quiz-category" value="science" name="category-name">
+      <label for="science-category">Science</label>
+
+      <input type="radio" class="quiz-category" value="math" name="category-name">
+      <label for="math-category">Math</label>
+
+      <input type="radio" class="quiz-category" value="history" name="category-name">
+      <label for="history-category">History</label>
+
+      <input type="radio" class="quiz-category" value="other" name="category-name">
+      <label for="other-category">Other</label>
+
+      <label for="quiz-description">Descripton</label>
+      <textarea id="quiz-description" placeholder="Quiz Description Here..."></textarea>
+      <p>Make your quiz private</p>
+      <input type="radio" class="quiz-is_public" value="FALSE" name="quiz-is_public">
+      <label for="is_public">No</label>
+      <input type="radio" class="quiz-is_public" value="TRUE" name="quiz-is_public">
+      <label for="is_public">Yes</label>
+
+      <button type="submit">Create Quiz</button>
+    </form>
+  </div>
+  <!-- QUESTION FORM -->
+  <div>
+    <form action="/create_new_quiz" method="POST">
+      <label for="question-input">Question</label>
+      <input type="text" placeholder="Write your question here...">
+
+      <label for="answers">Answer Options</label>
+      <input type="text" placeholder="Write answer option 1 ...">
+      <input type="text" placeholder="Write answer option 2 ...">
+      <input type="text" placeholder="Write answer option 3 ...">
+      <input type="text" placeholder="Write answer option 4 ...">
+
+      <label for="answers">Correct Answer</label>
+      <input type="text">
+
+
+      <button type="submit">Add</button>
+    </form>
+  </div>
 </body>
 
 </html>

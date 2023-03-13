@@ -18,15 +18,4 @@ $(() => {
   });
 
 
-  //renderQuizzes
-  const renderQuizzes = function() {
-
-  };
-
-  //loadQuizzes
-  const loadQuizzes = function() {
-
-  };
-
-
 });
