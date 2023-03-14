@@ -1,4 +1,4 @@
-const { query } = require('express');
+const { query, response } = require('express');
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
@@ -16,6 +16,11 @@ router.get('/:quiz_id/questions', (req, res) => {
   //       .status(500)
   //       .json({ error: err.message });
   //   });
+  // const queryString = `
+  //   SELECT * FROM questions
+  //   JOIN quizzes ON quizzes.id = quiz_id
+  //   WHERE quiz_id = ${quiz_id};
+  // `;
 
 });
 
@@ -26,17 +31,25 @@ router.post('/:quiz_id/questions', (req, res) => {
   const queryParams = [quiz_id, question, option1, option2, option3, option4, correctAnswer];
 
   db.query(`INSERT INTO questions (quiz_id, question, correct_answer, option_1, option_2, option_3, option_4)
-  VALUES ($1, $2, $3, $4, $5, $6, $7);`, queryParams);
+  VALUES ($1, $2, $3, $4, $5, $6, $7);`, queryParams)
+  .then(data => {
+    db.query(`
+      UPDATE quizzes
+      SET num_of_question = (
+        SELECT count(questions.*) AS num_of_question
+        FROM quizzes JOIN questions ON quiz_id = quizzes.id
+        WHERE quiz_id = ${quiz_id})
+      WHERE id = ${quiz_id};`);
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(500).send('error', err.message);
+  })
+  ;
 
 //UPDATE num_of_question on quizzes table every time users add a question
 
-  db.query(`
-  UPDATE quizzes
-  set num_of_question = (
-    SELECT count(questions.*) AS num_of_question
-    FROM quizzes JOIN questions ON quiz_id = quizzes.id
-    WHERE quiz_id = ${quiz_id})
-  WHERE id = ${quiz_id};`);
+
 
 })
 module.exports = router;

@@ -37,11 +37,11 @@ router.post('/', (req, res) => {
         RETURNING *
         `, queryParams)
         .then(function(result) {
-          console.log(result.rows[0]);
+          console.log('RESULT ROWS',result.rows[0]);
           res.status(200).json(result.rows[0]);
         })
         .catch((err) => {
-          res.status(500).send(err.message);
+          res.status(500).send(err);
         })
 });
 

@@ -41,10 +41,12 @@ $(() => {
     }).then((res) => {
       console.log('result from question handler: ', res);
       //CLEAR FORM AFTER EACH QUESTIONS SUBMISSION
-      // $('.question-form').reset();
-      res.sendstatu
+      $('.question-form').val('');
+      // res.status(200);
+
     }).catch((err) => {
-      console.log(err.message);
+      console.log(err);
+      // res.status(500).send();
     })
   })
 });
