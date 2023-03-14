@@ -40,6 +40,7 @@ const usersRoutes = require('./routes/users');
 const exploreRoutes = require('./routes/explore');
 const createNewQuizRoutes = require('./routes/create_new_quiz');
 const takeQuizRoutes = require('./routes/take_quiz');
+const loginRoutes = require('./routes/login');
 
 
 
@@ -48,16 +49,16 @@ const takeQuizRoutes = require('./routes/take_quiz');
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/api/users', userApiRoutes);
 app.use('/api/quizzes', quizzesApiRoutes);
+app.use('/api/questions', questionsApiRoutes);
+app.use('/api/quiz_results', quizResultsApiRoutes);
+app.use('/api/answered_questions', answeredQuestionsApiRoutes);
 
 app.use('/users', usersRoutes);
 app.use('/explore', exploreRoutes);
 app.use('/create_new_quiz', createNewQuizRoutes);
 app.use('/take_quiz', takeQuizRoutes);
-app.use('/api/questions', questionsApiRoutes);
+app.use('/login', loginRoutes);
 
-
-app.use('/api/quiz_results', quizResultsApiRoutes);
-app.use('/api/answered_questions', answeredQuestionsApiRoutes);
 //list of api end point
 /*
 
