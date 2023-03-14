@@ -1,27 +1,48 @@
-const createQuestionElement = function(questionObj) {
-  // variables from user object to be used in object
+const createAllQuestionsContainerHeader = function (questionObj) {
   const name = questionObj.name;
   const category = questionObj.category;
+
+    // question header elements
+    const newHeader = $("<header class='questionsHeader'>");
+    const newHeaderDiv = $("<div>");
+    const newQuestionCategory = $(`<span class='questionCategory'>`).text(`${category}`);
+    const newQuestionName = $("<p class='questionName'>").text(`${name}`);
+
+    newHeaderDiv.append(newQuestionName);
+    newHeaderDiv.append(newQuestionCategory);
+    newHeader.append(newHeaderDiv);
+  return newHeader;
+}
+
+const createAllQuestionsContainerFooter = function (questionObj) {
   const numOfQuestions = questionObj.num_of_question;
+
+    // question footer elements
+  const newFooter = $("<footer class='questionFooter'>");
+
+  // const newFooterP = $("<p>").text(`${questionDate}`);
+  const newFooterDiv = $("<div>");
+  // changed it to dynamic
+  const newQuestionNumOfQuestions = $("<p class='questionNumOfQuestions'>").text( `Total Questions: ${numOfQuestions}`);
+  const newQuestionCreatorName = $("<p class='questionCreatorName'>").text(`Created By: Dave`);
+
+  newFooterDiv.append(newQuestionCreatorName);
+  newFooterDiv.append(newQuestionNumOfQuestions);
+  newFooter.append(newFooterDiv);
+
+  return newFooter;
+}
+
+const createQuestionElement = function(questionObj) {
+  // variables from user object to be used in object
   const question = questionObj.question;
   const option1 = questionObj.option_1;
   const option2 = questionObj.option_2;
   const option3 = questionObj.option_3;
   const option4 = questionObj.option_4;
 
-
   // new question article
   const newArticle = $("<article class='questionDisplay'>");
-
-  // question header elements
-  const newHeader = $("<header class='questionHeader'>");
-  const newHeaderDiv = $("<div>");
-  const newQuestionCategory = $(`<span class='questionCategory'>`).text(`${category}`);
-  const newQuestionName = $("<p class='questionName'>").text(`${name}`);
-
-  newHeaderDiv.append(newQuestionName);
-  newHeaderDiv.append(newQuestionCategory);
-  newHeader.append(newHeaderDiv);
 
   // question body elements
   // added question description for css
@@ -64,36 +85,26 @@ const createQuestionElement = function(questionObj) {
 
   newQuestionContainer.append(newQuestion);
   newQuestionContainer.append(newAnswerList);
-
-  // question footer elements
-  const newFooter = $("<footer class='questionFooter'>");
-  // const newFooterP = $("<p>").text(`${questionDate}`);
-  const newFooterDiv = $("<div>");
-  // changed it to dynamic
-  const newQuestionNumOfQuestions = $("<p class='questionNumOfQuestions'>").text( `Total Questions: ${numOfQuestions}`);
-  const newQuestionCreatorName = $("<p class='questionCreatorName'>").text(`Created By: Dave`);
-  // const newShareBtnDiv = $("<div><i class='bi bi-share-fill'></i></div>")
-
-  newFooterDiv.append(newQuestionCreatorName);
-  newFooterDiv.append(newQuestionNumOfQuestions);
-  newFooter.append(newFooterDiv);
   // newFooterDiv.append(newShareBtnDiv);
 
 
   // adding new elements to article
-  newArticle.append(newHeader);
   newArticle.append(newQuestionContainer);
-  newArticle.append(newFooter);
 
   return newArticle;
 };
 
+
 const renderQuestionElement = function(questionArr) {
+  const $header = createAllQuestionsContainerHeader(questionArr[0]);
+  $('.all-questions-container').append($header);
   for (const question of questionArr) {
     const $question = createQuestionElement(question);
     $('.all-questions-container').append($question);
   }
-}
+  const $footer = createAllQuestionsContainerFooter(questionArr[0]);
+  $('.all-questions-container').append($footer);
+};
 
 $(() => {
   const pathname = window.location.pathname.split('/')
