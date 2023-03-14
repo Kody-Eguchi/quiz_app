@@ -35,6 +35,7 @@ const createAllQuestionsContainerFooter = function (questionObj) {
 
 const createQuestionElement = function(questionObj) {
   // variables from user object to be used in object
+  const question_id = questionObj.id;
   const question = questionObj.question;
   const option1 = questionObj.option_1;
   const option2 = questionObj.option_2;
@@ -51,19 +52,19 @@ const createQuestionElement = function(questionObj) {
   const newAnswerList = $("<ul class='answer-list'>");
   //ANSWER - OPTION1
   const newAnswerOne = $("<li>");
-  const newAnswerOneInput = $("<input type='radio' name='answer' id='option-1' class='answer'>");
+  const newAnswerOneInput = $(`<input type='radio' name=${question_id} class='answer option-1'>`);
   const newAnswerOneLabel = $("<label for='option-1'>").text(`${option1}`);
   //ANSWER - OPTION2
   const newAnswerTwo = $("<li>");
-  const newAnswerTwoInput = $("<input type='radio' name='answer' id='option-2' class='answer'>");
+  const newAnswerTwoInput = $(`<input type='radio' name=${question_id} class='answer option-2'>`);
   const newAnswerTwoLabel = $("<label for='option-2'>").text(`${option2}`);
   //ANSWER - OPTION3
   const newAnswerThree = $("<li>");
-  const newAnswerThreeInput = $("<input type='radio' name='answer' id='option-3' class='answer'>");
+  const newAnswerThreeInput = $(`<input type='radio' name=${question_id} class='answer option-3'>`);
   const newAnswerThreeLabel = $("<label for='option-3'>").text(`${option3}`);
   //ANSWER - OPTION4
   const newAnswerFour = $("<li>");
-  const newAnswerFourInput = $("<input type='radio' name='answer' id='option-4' class='answer'>");
+  const newAnswerFourInput = $(`<input type='radio' name=${question_id} class='answer option-4'>`);
   const newAnswerFourLabel = $("<label for='option-4'>").text(`${option4}`);
 
   newAnswerOne.append(newAnswerOneInput);
