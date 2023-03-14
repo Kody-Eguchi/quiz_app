@@ -3,10 +3,10 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 
-router.get('/:quiz_id/questions', (req, res) => {
+router.get('/:quiz_id', (req, res) => {
   const quiz_id = req.params.quiz_id;
   const query = `
-    SELECT * FROM questions
+    SELECT questions.id, quiz_id, question, option_1, option_2, option_3, option_4 FROM questions
     JOIN quizzes ON quizzes.id = quiz_id
     WHERE quiz_id = ${quiz_id};
   `;
@@ -24,7 +24,7 @@ router.get('/:quiz_id/questions', (req, res) => {
 
 });
 
-router.post('/:quiz_id/questions', (req, res) => {
+router.post('/:quiz_id', (req, res) => {
 
   const { question, option1, option2, option3, option4, 'correct-answer': correctAnswer } = req.body;
   const { quiz_id } = req.params;

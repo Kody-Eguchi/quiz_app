@@ -1,5 +1,3 @@
-// const db = require('../../db/connection');
-
 $(() => {
   //HIDE QUESTION FOMR AS DEFAULT
   $('#quiz-question-form').hide();
@@ -34,7 +32,7 @@ $(() => {
 
     $.ajax({
       method: 'POST',
-      url: `/api/quizzes/${quiz_id}/questions`,
+      url: `/api/quizzes/${quiz_id}`,
       data: $formData
     }).then((res) => {
       //CLEAR FORM AFTER EACH QUESTIONS SUBMISSION
