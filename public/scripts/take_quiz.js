@@ -2,7 +2,6 @@ const createQuestionElement = function(questionObj) {
   // variables from user object to be used in object
   const name = questionObj.name;
   const category = questionObj.category;
-  const description = questionObj.description;
   const numOfQuestions = questionObj.num_of_question;
   const question = questionObj.question;
   const option1 = questionObj.option_1;
@@ -11,47 +10,90 @@ const createQuestionElement = function(questionObj) {
   const option4 = questionObj.option_4;
 
 
-  // new quiz article
-  const newArticle = $("<article class='quizDisplay'>");
+  // new question article
+  const newArticle = $("<article class='questionDisplay'>");
 
-  // quiz header elements
-  const newHeader = $("<header class='quizHeader'>");
+  // question header elements
+  const newHeader = $("<header class='questionHeader'>");
   const newHeaderDiv = $("<div>");
-  const newQuizCategory = $(`<span class='quizCategory'>`).text(`${category}`);
-  const newQuizName = $("<p class='quizName'>").text(`${name}`);
+  const newQuestionCategory = $(`<span class='questionCategory'>`).text(`${category}`);
+  const newQuestionName = $("<p class='questionName'>").text(`${name}`);
 
-  newHeaderDiv.append(newQuizName);
-  newHeaderDiv.append(newQuizCategory);
+  newHeaderDiv.append(newQuestionName);
+  newHeaderDiv.append(newQuestionCategory);
   newHeader.append(newHeaderDiv);
 
-  // quiz body elements
-  // added quiz description for css
-  const newQuizDescriptionP = $("<p class='quizDescription'>").text(`${description}`);
+  // question body elements
+  // added question description for css
+  const newQuestionContainer = $("<div class='question-container'>");
+  const newQuestion = $("<p class='new-question'>").text(`${question}`);
+  const newAnswerList = $("<ul class='answer-list'>");
+  //ANSWER - OPTION1
+  const newAnswerOne = $("<li>");
+  const newAnswerOneInput = $("<input type='radio' name='answer' id='option-1' class='answer'>");
+  const newAnswerOneLabel = $("<label for='option-1'>").text(`${option1}`);
+  //ANSWER - OPTION2
+  const newAnswerTwo = $("<li>");
+  const newAnswerTwoInput = $("<input type='radio' name='answer' id='option-2' class='answer'>");
+  const newAnswerTwoLabel = $("<label for='option-2'>").text(`${option2}`);
+  //ANSWER - OPTION3
+  const newAnswerThree = $("<li>");
+  const newAnswerThreeInput = $("<input type='radio' name='answer' id='option-3' class='answer'>");
+  const newAnswerThreeLabel = $("<label for='option-3'>").text(`${option3}`);
+  //ANSWER - OPTION4
+  const newAnswerFour = $("<li>");
+  const newAnswerFourInput = $("<input type='radio' name='answer' id='option-4' class='answer'>");
+  const newAnswerFourLabel = $("<label for='option-4'>").text(`${option4}`);
 
-  // quiz footer elements
-  const newFooter = $("<footer class='QuizFooter'>");
-  // const newFooterP = $("<p>").text(`${quizDate}`);
+  newAnswerOne.append(newAnswerOneInput);
+  newAnswerOne.append(newAnswerOneLabel);
+
+  newAnswerTwo.append(newAnswerTwoInput);
+  newAnswerTwo.append(newAnswerTwoLabel);
+
+  newAnswerThree.append(newAnswerThreeInput);
+  newAnswerThree.append(newAnswerThreeLabel);
+
+  newAnswerFour.append(newAnswerFourInput);
+  newAnswerFour.append(newAnswerFourLabel);
+
+  newAnswerList.append(newAnswerOne);
+  newAnswerList.append(newAnswerTwo);
+  newAnswerList.append(newAnswerThree);
+  newAnswerList.append(newAnswerFour);
+
+  newQuestionContainer.append(newQuestion);
+  newQuestionContainer.append(newAnswerList);
+
+  // question footer elements
+  const newFooter = $("<footer class='questionFooter'>");
+  // const newFooterP = $("<p>").text(`${questionDate}`);
   const newFooterDiv = $("<div>");
   // changed it to dynamic
-  const newQuizNumOfQuestions = $("<p class='quizNumOfQuestions'>").text( `Total Questions: ${numOfQuestions}`);
-  const newQuizCreatorName = $("<p class='quizCreatorName'>").text(`Created By: Dave`);
-  const newShareBtnDiv = $("<div><i class='bi bi-share-fill'></i></div>")
+  const newQuestionNumOfQuestions = $("<p class='questionNumOfQuestions'>").text( `Total Questions: ${numOfQuestions}`);
+  const newQuestionCreatorName = $("<p class='questionCreatorName'>").text(`Created By: Dave`);
+  // const newShareBtnDiv = $("<div><i class='bi bi-share-fill'></i></div>")
 
-  newFooterDiv.append(newQuizCreatorName);
-  newFooterDiv.append(newQuizNumOfQuestions);
+  newFooterDiv.append(newQuestionCreatorName);
+  newFooterDiv.append(newQuestionNumOfQuestions);
   newFooter.append(newFooterDiv);
-  newFooterDiv.append(newShareBtnDiv);
+  // newFooterDiv.append(newShareBtnDiv);
 
 
   // adding new elements to article
   newArticle.append(newHeader);
-  newArticle.append(newQuizDescriptionP);
+  newArticle.append(newQuestionContainer);
   newArticle.append(newFooter);
 
   return newArticle;
 };
 
-
+const renderQuestionElement = function(questionArr) {
+  for (const question of questionArr) {
+    const $question = createQuestionElement(question);
+    $('.all-questions-container').append($question);
+  }
+}
 
 $(() => {
   const pathname = window.location.pathname.split('/')
@@ -59,9 +101,10 @@ $(() => {
 
   $.ajax({
     method: 'GET',
-    url: `http://localhost:8080/api/questions/${quiz_id}/questions`
+    url: `http://localhost:8080/api/questions/${quiz_id}`
   })
   .then(data => {
     console.log(data.questions);
+    renderQuestionElement(data.questions);
   })
 })

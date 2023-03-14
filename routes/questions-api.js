@@ -6,7 +6,7 @@ const db = require('../db/connection');
 router.get('/:quiz_id', (req, res) => {
   const quiz_id = req.params.quiz_id;
   const query = `
-    SELECT questions.id, quiz_id, question, option_1, option_2, option_3, option_4 FROM questions
+    SELECT questions.id, quiz_id, question, option_1, option_2, option_3, option_4, quizzes.name, quizzes.num_of_question, quizzes.category FROM questions
     JOIN quizzes ON quizzes.id = quiz_id
     WHERE quiz_id = ${quiz_id};
   `;
