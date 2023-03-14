@@ -4,7 +4,7 @@ const db = require('../db/connection');
 
 router.get('/', (req, res) => {
   const query = `SELECT * FROM quiz_results;`;
-  console.log(query);
+
   db.query(query)
     .then(data => {
       const quizResults = data.rows;

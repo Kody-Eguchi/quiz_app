@@ -21,17 +21,15 @@ $(() => {
       $('#quiz-info-form').slideUp();
       //QUESTIONS CREATION FORM SLIDEDOWN UPON QUIZ FORM SUBMISSION
       $('#quiz-question-form').slideDown();
-      console.log(newQuiz)
       quiz_id = newQuiz.id;
     }).catch((err) => {
-      console.log(err.message);
+      res.status(500).send(err);
     })
   })
 
   $('#quiz-question-form').submit(function(event) {
     event.preventDefault();
 
-    console.log(quiz_id);
     const $formData = $(this).serialize();
 
     $.ajax({
@@ -39,13 +37,12 @@ $(() => {
       url: `/api/quizzes/${quiz_id}/questions`,
       data: $formData
     }).then((res) => {
-      console.log('result from question handler: ', res);
       //CLEAR FORM AFTER EACH QUESTIONS SUBMISSION
       $('.question-form').val('');
       // res.status(200);
 
     }).catch((err) => {
-      console.log(err);
+      res.status(500).send(err);
       // res.status(500).send();
     })
   })

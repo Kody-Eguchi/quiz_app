@@ -4,23 +4,23 @@ const router  = express.Router();
 const db = require('../db/connection');
 
 router.get('/:quiz_id/questions', (req, res) => {
-  // const query = `SELECT * FROM questions;`;
-  // console.log(query);
-  // db.query(query)
-  //   .then(data => {
-  //     const questions = data.rows;
-  //     res.json({ questions });
-  //   })
-  //   .catch(err => {
-  //     res
-  //       .status(500)
-  //       .json({ error: err.message });
-  //   });
-  // const queryString = `
-  //   SELECT * FROM questions
-  //   JOIN quizzes ON quizzes.id = quiz_id
-  //   WHERE quiz_id = ${quiz_id};
-  // `;
+  const quiz_id = req.params.quiz_id;
+  const query = `
+    SELECT * FROM questions
+    JOIN quizzes ON quizzes.id = quiz_id
+    WHERE quiz_id = ${quiz_id};
+  `;
+
+  db.query(query)
+    .then(data => {
+      const questions = data.rows;
+      res.json({ questions });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 
 });
 

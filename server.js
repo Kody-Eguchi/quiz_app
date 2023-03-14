@@ -31,15 +31,16 @@ app.use(express.static('public'));
 // Note: Feel free to replace the example routes below with your own
 const userApiRoutes = require('./routes/users-api');
 const quizzesApiRoutes = require('./routes/quizzes-api');
+const quizResultsApiRoutes = require('./routes/quiz_results-api');
+const answeredQuestionsApiRoutes = require('./routes/answered_questions-api');
+const questionsApiRoutes = require('./routes/questions-api');
+
 
 const usersRoutes = require('./routes/users');
 const exploreRoutes = require('./routes/explore');
 const createNewQuizRoutes = require('./routes/create_new_quiz');
 const takeQuizRoutes = require('./routes/take_quiz');
 
-
-const quizResultsApiRoutes = require('./routes/quiz_results-api');
-const answeredQuestionsApiRoutes = require('./routes/answered_questions-api');
 
 
 // Mount all resource routes
@@ -52,6 +53,7 @@ app.use('/users', usersRoutes);
 app.use('/explore', exploreRoutes);
 app.use('/create_new_quiz', createNewQuizRoutes);
 app.use('/take_quiz', takeQuizRoutes);
+app.use('/api/questions', questionsApiRoutes);
 
 
 app.use('/api/quiz_results', quizResultsApiRoutes);
