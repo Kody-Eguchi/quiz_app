@@ -11,7 +11,7 @@ const createQuizElement = function(quiz) {
   // quiz header elements
   const newHeader = $("<header class='quizHeader'>");
   const newHeaderDiv = $("<div>");
-  const newQuizCategory = $(`<span>`).text(`${category}`);
+  const newQuizCategory = $(`<span class='quizCategory'>`).text(`${category}`);
   const newQuizName = $("<p class='quizName'>").text(`${name}`);
 
   newHeaderDiv.append(newQuizName);
@@ -19,18 +19,23 @@ const createQuizElement = function(quiz) {
   newHeader.append(newHeaderDiv);
 
   // quiz body elements
+  // added quiz description for css
   const newQuizDescriptionP = $("<p class='quizDescription'>").text(`${description}`);
 
   // quiz footer elements
   const newFooter = $("<footer class='QuizFooter'>");
   // const newFooterP = $("<p>").text(`${quizDate}`);
   const newFooterDiv = $("<div>");
-  const newQuizNumOfQuestions = $("<p class='quizNumOfQuestions'>").text(`${numOfQuestions}`);
-  const newQuizCreatorName = $("<p class='quizCreatorName'>").text(`Dave`);
+  // changed it to dynamic 
+  const newQuizNumOfQuestions = $("<p class='quizNumOfQuestions'>").text( `Total Questions: ${numOfQuestions}`);
+  const newQuizCreatorName = $("<p class='quizCreatorName'>").text(`Created By: Dave`);
+  const newShareBtnDiv = $("<div><i class='bi bi-share-fill'></i></div>")
 
   newFooterDiv.append(newQuizCreatorName);
   newFooterDiv.append(newQuizNumOfQuestions);
   newFooter.append(newFooterDiv);
+  newFooterDiv.append(newShareBtnDiv);
+
 
   // adding new elements to article
   newArticle.append(newHeader);
