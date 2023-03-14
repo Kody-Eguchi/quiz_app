@@ -1,6 +1,8 @@
 // const db = require('../../db/connection');
 
 $(() => {
+  //HIDE QUESTION FOMR AS DEFAULT
+  $('#quiz-question-form').hide();
 
   let quiz_id;
 
@@ -15,6 +17,10 @@ $(() => {
       url: '/api/quizzes',
       data: $formData
     }).then((newQuiz) => {
+      //QUIZ FORM SLIDEUP AFTER SUBMISSION
+      $('#quiz-info-form').slideUp();
+      //QUESTIONS CREATION FORM SLIDEDOWN UPON QUIZ FORM SUBMISSION
+      $('#quiz-question-form').slideDown();
       console.log(newQuiz)
       quiz_id = newQuiz.id;
     }).catch((err) => {
@@ -34,6 +40,9 @@ $(() => {
       data: $formData
     }).then((res) => {
       console.log('result from question handler: ', res);
+      //CLEAR FORM AFTER EACH QUESTIONS SUBMISSION
+      // $('.question-form').reset();
+      res.sendstatu
     }).catch((err) => {
       console.log(err.message);
     })
