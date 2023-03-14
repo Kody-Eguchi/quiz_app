@@ -1,6 +1,55 @@
 // See: https://sass-lang.com/
 
+$color_black : black;
+$color_gray: rgb(184, 181, 181);
+
 body,
 html {
   margin: 0;
+  // padding:0;
+}
+
+nav {
+  text-align: center;
+  border-bottom: 1px solid $color_black;
+  border-radius: 5px;
+}
+
+.quiz-header {
+  text-align: center;
+}
+
+.quizDisplay {
+  border: 1px solid $color_gray;
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 40%;
+  margin-bottom: 1%;
+  background-color: rgba(237, 246, 246, 0.944);
+}
+
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+}
+
+.quizName {
+  font-size: medium;
+  font-weight: 600;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.QuizFooter {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid $color_gray;
+  margin-right: 4%;
+}
+
+.quizCategory,.quizName,.quizDescription {
+  margin-left: 3%;
 }
