@@ -23,19 +23,4 @@ router.get('/', (req, res) => {
     });
 });
 
-// router.get('/api/users', (req, res) => {
-//   userQueries.getAllUsers()
-//     .then(users => {
-//       res.json({ users });
-//     })
-//     .catch(err => {
-//       res
-//         .status(500)
-//         .json({ error: err.message });
-//     });
-// });
-
-
-
-
 module.exports = router;
