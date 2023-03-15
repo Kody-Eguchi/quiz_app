@@ -22,7 +22,8 @@ const getQuizId = function(question_id){
     });
 
 };
-getQuizId(3).then(data => console.log(data));
+
+// getQuizId(3).then(data => console.log(data));
 
 //RETURN CORRECT ANSWER BASED ON QUESTION ID
 const getCorrectAnswer = function(question_id){
@@ -34,8 +35,8 @@ const getCorrectAnswer = function(question_id){
     });
 };
 
-getCorrectAnswer(3)
-  .then(result => console.log(result));
+// getCorrectAnswer(3)
+//   .then(result => console.log(result));
 
 
 //GET USER ID BY EMAIL
@@ -89,21 +90,32 @@ const markQuiz = function(currentUserEmail, obj) {
 
 };
 
-//FIND LATEST QUIZ_RESULT_ID BASED ON QUESTION_ID
-const findLatestQuizResultId = function(question_id) {
-  const queryString = 'SELECT id FROM quiz_results';
+// FIND LATEST QUIZ_RESULT_ID BASED ON USER_ID
+
+const findLatestQuizResultIdByUserID = function(userID) {
+  const queryParams = [userID];
+  const queryString = `SELECT quiz_results.id FROM quiz_results
+                        JOIN users on users.id = participant_id
+                        WHERE participant_id = $1
+                        ORDER BY completed_at
+                        LIMIT 1;`;
+
+  return db.query(queryString, queryParams)
+    .then(data => {
+      return data.rows[0].id;
+    })
 };
 
 //INSERT DATA TO ANSWERED QUESTION TABLE
-const storeAnswers = function(obj) {
+const storeAnswers = function(quizResultID ,obj) {
   for (const [question_id, given_answer] of Object.entries(obj)) {
    console.log('question_id', question_id);
    console.log('given_answer', given_answer);
 
-   const queryParams = [question_id, given_answer];
+   const queryParams = [question_id, quizResultID, given_answer];
    const queryString = `
    INSERT INTO answered_questions (question_id, quiz_result_id, given_answer)
-   VALUES ($1, $2);
+   VALUES ($1, $2, $3);
  `;
    db.query(queryString, queryParams)
    .then(data => {
@@ -133,7 +145,13 @@ router.post('/', (req, res) => {
 
   markQuiz(userEmail, submittedAnswers);
   // storeAnswers(submittedAnswers);
-})
+
+  const userID = getUserIdByEmail(userEmail);
+
+  const quizResultID = findLatestQuizResultIdByUserID(userID)
+
+  storeAnswers(quizResultID, submittedAnswers);
+});
 
 
 module.exports = router;
