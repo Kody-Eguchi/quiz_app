@@ -23,8 +23,6 @@ const getQuizId = function(question_id){
 
 };
 
-// getQuizId(3).then(data => console.log(data));
-
 //RETURN CORRECT ANSWER BASED ON QUESTION ID
 const getCorrectAnswer = function(question_id){
   const queryString = `SELECT correct_answer FROM questions WHERE id = $1;`;
@@ -34,9 +32,6 @@ const getCorrectAnswer = function(question_id){
       return data.rows[0].correct_answer;
     });
 };
-
-// getCorrectAnswer(3)
-//   .then(result => console.log(result));
 
 
 //GET USER ID BY EMAIL
@@ -51,51 +46,42 @@ const getUserIdByEmail = function(email) {
 
 
 //MARK ANSWERED QUESTIONS AND STORE DATA INTO QUIZ_RESULTS TABLE
-const markQuiz = function(currentUserEmail, obj) {
-  let correct_answers = 0;
-  let incorrect_answers = 0;
+const markQuiz = async function(currentUserEmail, obj) {
 
-  //LOOP
 
-   for (const [question_id, given_answer] of Object.entries(obj)) {
-    let correctAnswer;
-    getCorrectAnswer(question_id)
-    .then(data => {
-      correctAnswer = data;
-      console.log('correctAnswer',correctAnswer);
 
-      if (correctAnswer === given_answer) {
-        correct_answers ++;
-      } else {
-        incorrect_answers ++
-      }
+  const getCorrectAnswerPromises = Object.entries(obj).map(([question_id]) => {
+    return getCorrectAnswer(question_id)
+  })
 
-    });
-   }
-   //LOOP END
-  console.log('✅✅correct_answers✅✅', correct_answers);
-  console.log('❌❌incorrect_answers❌❌', incorrect_answers);
+  const givenAnswers =  Object.entries(obj).map(([_,given_answer]) => given_answer)
+
+  const { correctAnswersCount, incorrectAnswersCount } = await Promise.all(getCorrectAnswerPromises).then((correctAnswers) => {
+    let correctAnswersCount = 0;
+    let incorrectAnswersCount = 0;
+
+    for (let i = 0; i <  correctAnswers.length; i++) {
+      correctAnswers[i] === givenAnswers[i] ? correctAnswersCount++ : incorrectAnswersCount++
+    }
+
+    return { correctAnswersCount, incorrectAnswersCount }
+  })
+
+
 
 
 
    const quizIdArr = Object.keys(obj);
 
-   let quizId;
-   let userId;
 
-   return getQuizId(quizIdArr[0])
-   .then(data => {
-    quizId = data;
+
+ return getQuizId(quizIdArr[0]).then(quizId => {
+    // quizId = data;
     console.log('🍎', quizId);
     getUserIdByEmail(currentUserEmail)
-    .then(data => {
-      userId = data;
-      console.log('🍋', userId);
-
-    })
-    .then( () => {
-      const result = Math.floor(correct_answers/(correct_answers + incorrect_answers) * 100);
-      const queryParams = [quizId, userId, correct_answers, incorrect_answers, result, 'somethin.com'];
+    .then((userId) => {
+      const result = Math.floor(correctAnswersCount/(correctAnswersCount + incorrectAnswersCount) * 100);
+      const queryParams = [quizId, userId, correctAnswersCount, incorrectAnswersCount, result, 'blahh'];
       console.log('queryParams',queryParams)
       const queryString = `
        INSERT INTO quiz_results (quiz_id, participant_id, number_of_correct_answer, number_of_wrong_answer, result, quiz_result_url  )
@@ -104,13 +90,6 @@ const markQuiz = function(currentUserEmail, obj) {
       return db.query(queryString, queryParams)
   })
    });
-
-
-
-  //  //too early to console,log
-  //   console.log(quizId);
-
-  //   console.log(userId);
 
 
 };
@@ -133,19 +112,15 @@ const findLatestQuizResultIdByUserID = function(userID) {
 
 //INSERT DATA TO ANSWERED QUESTION TABLE
 const storeAnswers = function(obj) {
-  for (const [question_id, given_answer] of Object.entries(obj)) {
-  //  console.log('question_id', question_id);
-  //  console.log('given_answer', given_answer);
+  return Object.entries(obj).map(([question_id, given_answer]) => {
+    const queryParams = [question_id, given_answer];
+    const queryString = `
+    INSERT INTO answered_questions (question_id, given_answer)
+    VALUES ($1, $2);
+  `;
+    return db.query(queryString, queryParams)
+  })
 
-   const queryParams = [question_id, given_answer];
-   const queryString = `
-   INSERT INTO answered_questions (question_id, given_answer)
-   VALUES ($1, $2);
- `;
-   return db.query(queryString, queryParams)
-
-
-  }
 
  }
 
@@ -164,11 +139,12 @@ router.post('/', (req, res) => {
 // console.log(user);
 
   markQuiz(userEmail, submittedAnswers)
-  .then(() => {
+  .then(async () => {
 
     // const userID = getUserIdByEmail(userEmail);
     // const quizResultID = findLatestQuizResultIdByUserID(userID)
-    storeAnswers(submittedAnswers);
+    await Promise.all(storeAnswers(submittedAnswers));
+
     console.log('DATE INSERT WAS SUCESSFULL 🚨')
     res.status(200);
 
