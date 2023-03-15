@@ -41,6 +41,7 @@ const exploreRoutes = require('./routes/explore');
 const createNewQuizRoutes = require('./routes/create_new_quiz');
 const takeQuizRoutes = require('./routes/take_quiz');
 const loginRoutes = require('./routes/login');
+const quizResultRoutes = require('./routes/quiz_results');
 
 
 
@@ -58,6 +59,7 @@ app.use('/explore', exploreRoutes);
 app.use('/create_new_quiz', createNewQuizRoutes);
 app.use('/take_quiz', takeQuizRoutes);
 app.use('/login', loginRoutes);
+app.use('/quiz_results', quizResultRoutes);
 
 //list of api end point
 /*

@@ -52,19 +52,19 @@ const createQuestionElement = function(questionObj) {
   const newAnswerList = $("<ul class='answer-list'>");
   //ANSWER - OPTION1
   const newAnswerOne = $("<li>");
-  const newAnswerOneInput = $(`<input type='radio' name=${question_id} class='answer option-1'>`);
+  const newAnswerOneInput = $(`<input type='radio' name=${question_id} class='answer option-1' value=${option1}>`);
   const newAnswerOneLabel = $("<label for='option-1'>").text(`${option1}`);
   //ANSWER - OPTION2
   const newAnswerTwo = $("<li>");
-  const newAnswerTwoInput = $(`<input type='radio' name=${question_id} class='answer option-2'>`);
+  const newAnswerTwoInput = $(`<input type='radio' name=${question_id} class='answer option-2' value=${option2}>`);
   const newAnswerTwoLabel = $("<label for='option-2'>").text(`${option2}`);
   //ANSWER - OPTION3
   const newAnswerThree = $("<li>");
-  const newAnswerThreeInput = $(`<input type='radio' name=${question_id} class='answer option-3'>`);
+  const newAnswerThreeInput = $(`<input type='radio' name=${question_id} class='answer option-3' value=${option3}>`);
   const newAnswerThreeLabel = $("<label for='option-3'>").text(`${option3}`);
   //ANSWER - OPTION4
   const newAnswerFour = $("<li>");
-  const newAnswerFourInput = $(`<input type='radio' name=${question_id} class='answer option-4'>`);
+  const newAnswerFourInput = $(`<input type='radio' name=${question_id} class='answer option-4' value=${option4}>`);
   const newAnswerFourLabel = $("<label for='option-4'>").text(`${option4}`);
 
   newAnswerOne.append(newAnswerOneInput);
@@ -119,4 +119,18 @@ $(() => {
     console.log(data.questions);
     renderQuestionElement(data.questions);
   })
+
+  $("#submit-quiz").on('click', function(e) {
+    // e.preventDefault();
+    console.log("yo");
+    // res.redirect('/quiz_results');
+
+    // $.ajax({
+    //   method:
+    // })
+
+  });
+
+
+
 })

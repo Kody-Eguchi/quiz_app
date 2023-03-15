@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 
+
 router.get('/', (req, res) => {
   res.render('login');
 });
@@ -17,6 +18,8 @@ router.post('/', (req, res) => {
       res.send('Invalid login');
     }
 
+    res.cookie('username', email)
+    console.log("Set Cookie");
     res.redirect('/');
   })
   .catch(err => {
