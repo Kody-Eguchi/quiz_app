@@ -121,7 +121,7 @@ $(() => {
   })
 
   $("#submit-quiz").on('click', function(e) {
-    // e.preventDefault();
+    e.preventDefault();
   });
 
 

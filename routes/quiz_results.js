@@ -67,29 +67,21 @@ const markQuiz = async function(currentUserEmail, obj) {
     return { correctAnswersCount, incorrectAnswersCount }
   })
 
-
-
-
-
    const quizIdArr = Object.keys(obj);
 
-
-
  return getQuizId(quizIdArr[0]).then(quizId => {
-    // quizId = data;
-    console.log('🍎', quizId);
-    getUserIdByEmail(currentUserEmail)
+
+  getUserIdByEmail(currentUserEmail)
     .then((userId) => {
       const result = Math.floor(correctAnswersCount/(correctAnswersCount + incorrectAnswersCount) * 100);
       const queryParams = [quizId, userId, correctAnswersCount, incorrectAnswersCount, result, 'blahh'];
-      console.log('queryParams',queryParams)
       const queryString = `
        INSERT INTO quiz_results (quiz_id, participant_id, number_of_correct_answer, number_of_wrong_answer, result, quiz_result_url  )
        VALUES ($1, $2, $3, $4, $5, $6);
      `;
       return db.query(queryString, queryParams)
-  })
-   });
+    })
+  });
 
 
 };
@@ -130,22 +122,13 @@ const storeAnswers = function(obj) {
 // URL should be wildcard /:id
 
 router.post('/', (req, res) => {
-  console.log(req.body);
-  // res.send(req.body);
   const submittedAnswers = req.body;
-  // console.log(submittedAnswers);
 
   const userEmail = req.cookies.username;
-// console.log(user);
 
   markQuiz(userEmail, submittedAnswers)
   .then(async () => {
-
-    // const userID = getUserIdByEmail(userEmail);
-    // const quizResultID = findLatestQuizResultIdByUserID(userID)
     await Promise.all(storeAnswers(submittedAnswers));
-
-    console.log('DATE INSERT WAS SUCESSFULL 🚨')
     res.status(200);
 
   })
