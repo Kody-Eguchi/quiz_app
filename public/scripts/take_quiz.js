@@ -122,13 +122,6 @@ $(() => {
 
   $("#submit-quiz").on('click', function(e) {
     // e.preventDefault();
-    console.log("yo");
-    // res.redirect('/quiz_results');
-
-    // $.ajax({
-    //   method:
-    // })
-
   });
 
 
