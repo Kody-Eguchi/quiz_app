@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/login.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
@@ -29,11 +30,16 @@
 
   <main>
     <div id="login-form">
+      <h1>Login</h1>
       <form id="login-info" method="POST" action="/login">
-        <label for="email">Email</label>
-        <input type="email" class="login-email" name="email" placeholder="Email">
-        <label for="password">Password</label>
-        <input type="password" class="login-password" name="password" placeholder="Password">
+        <div class="txt_field">
+          <!-- <label for="email">Email</label> -->
+          <input type="email" class="login-email" name="email" placeholder="Email">
+        </div>
+        <div class="txt_field">
+          <!-- <label for="password">Password</label> -->
+          <input type="password" class="login-password" name="password" placeholder="Password">
+        </div>
         <button type="submit" class="login-button">Sign in</button>
       </form>
     </div>

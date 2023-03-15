@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/create_new_quiz.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
@@ -20,42 +21,70 @@
 
 <body>
   <!-- QUIZ FORM -->
-  <div>
+  <div id="quiz-form">
+    <h1>Create Quiz</h1>
     <form id="quiz-info-form" action='/create_new_quiz' method="POST">
-      <label for="quiz-title-input">Title</label>
-      <input type="text" placeholder="Quiz Title" class="quiz-title-input" name="quiz-name">
-      <label for="category">Category</label>
+      <div class="quiz-holder">
+        <div class="quiz-title">
+          <label for="quiz-title-input">Title</label>
+          <br>
+          <input type="text" placeholder="Quiz Title" class="quiz-title-input" name="quiz-name">
+        </div>
+        <div class="qz_category"> 
+          <label for="category">Category</label>
+          <br>
+          <!--RADIO BUTTONS -->
+          <div>
+            <input type="radio" class="quiz-category" value="music" name="quiz-category">
+            <label for="music-category">Music</label>
+          </div>
 
-      <!--RADIO BUTTONS -->
-      <input type="radio" class="quiz-category" value="music" name="quiz-category">
-      <label for="music-category">Music</label>
+          <div>
+            <input type="radio" class="quiz-category" value="arts" name="quiz-category">
+            <label for="arts-category">Arts</label>
+          </div>
+          <div>
+            <input type="radio" class="quiz-category" value="science" name="quiz-category">
+            <label for="science-category">Science</label>
+          </div>
+          <div>
+            <input type="radio" class="quiz-category" value="math" name="quiz-category">
+            <label for="math-category">Math</label>
+          </div>
+          <div>
+            <input type="radio" class="quiz-category" value="history" name="quiz-category">
+            <label for="history-category">History</label>
+          </div>
+          <div>
+            <input type="radio" class="quiz-category" value="other" name="quiz-category">
+            <label for="other-category">Other</label>
+          </div>
+        </div>
+        <div class="quiz-description">
+          <label for="quiz-description">Descripton</label>
+          <br>
+          <textarea id="quiz-description" placeholder="Quiz Description Here..." name="quiz-description"></textarea>
+        </div>
+        <div class="quiz-public">
+          <label>Make your quiz public</label>
+          <br>
+          <div>
+            <label for="is_public">Yes</label>
+            <input type="radio" class="quiz-is_public" value="TRUE" name="quiz-is_public">
+            <label for="is_public">No</label>
+            <input type="radio" class="quiz-is_public" value="FALSE" name="quiz-is_public">
+          </div>
+        </div>
+        <div>
+          <button type="submit" class="submit-create-quiz-btn">Create Quiz</button>
+        </div>
+      </div>
+       
+      </form>
+    </div>
 
-      <input type="radio" class="quiz-category" value="arts" name="quiz-category">
-      <label for="arts-category">Arts</label>
+      
 
-      <input type="radio" class="quiz-category" value="science" name="quiz-category">
-      <label for="science-category">Science</label>
-
-      <input type="radio" class="quiz-category" value="math" name="quiz-category">
-      <label for="math-category">Math</label>
-
-      <input type="radio" class="quiz-category" value="history" name="quiz-category">
-      <label for="history-category">History</label>
-
-      <input type="radio" class="quiz-category" value="other" name="quiz-category">
-      <label for="other-category">Other</label>
-
-      <label for="quiz-description">Descripton</label>
-      <textarea id="quiz-description" placeholder="Quiz Description Here..." name="quiz-description"></textarea>
-      <p>Make your quiz public</p>
-      <input type="radio" class="quiz-is_public" value="FALSE" name="quiz-is_public">
-      <label for="is_public">No</label>
-      <input type="radio" class="quiz-is_public" value="TRUE" name="quiz-is_public">
-      <label for="is_public">Yes</label>
-
-      <button type="submit">Create Quiz</button>
-    </form>
-  </div>
   <!-- QUESTION FORM -->
   <div>
     <form id="quiz-question-form" action="/create_new_quiz" method="POST">
