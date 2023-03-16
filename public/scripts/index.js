@@ -32,12 +32,14 @@ const createQuizElement = function(quiz) {
   const newQuizCreatorName = $("<p class='quizCreatorName'>").text(`Created By: Dave`);
   const newShareBtn = $(`<i class="fa-solid fa-share" class="share-btn">`)
   const newUrlBox = $(`<input class='urlBox' value="http://localhost:8080/take_quiz/${quizId}">`)
+  const newRedirecBtn = $(`<a href="http://localhost:8080/take_quiz/${quizId}">`).text('Take this Quiz Now!');
 
   newFooterDiv.append(newQuizCreatorName);
   newFooterDiv.append(newQuizNumOfQuestions);
-  newFooter.append(newFooterDiv);
+  newFooterDiv.append(newRedirecBtn);
   newFooterDiv.append(newShareBtn);
   newFooterDiv.append(newUrlBox);
+  newFooter.append(newFooterDiv);
 
   newShareBtn.click(function(e){
     newUrlBox.toggle();
