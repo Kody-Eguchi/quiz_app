@@ -1,5 +1,6 @@
 const createQuizElement = function(quiz) {
   // variables from user object to be used in object
+  const quizId = quiz.id;
   const name = quiz.name;
   const category = quiz.category;
   const description = quiz.description;
@@ -26,15 +27,21 @@ const createQuizElement = function(quiz) {
   const newFooter = $("<footer class='QuizFooter'>");
   // const newFooterP = $("<p>").text(`${quizDate}`);
   const newFooterDiv = $("<div>");
-  // changed it to dynamic 
+  // changed it to dynamic
   const newQuizNumOfQuestions = $("<p class='quizNumOfQuestions'>").text( `Total Questions: ${numOfQuestions}`);
   const newQuizCreatorName = $("<p class='quizCreatorName'>").text(`Created By: Dave`);
-  const newShareBtnDiv = $("<div><i class='bi bi-share-fill'></i></div>")
+  const newShareBtn = $(`<i class="fa-solid fa-share" class="share-btn">`)
+  const newUrlBox = $(`<input class='urlBox' value="http://localhost:8080/take_quiz/${quizId}">`)
 
   newFooterDiv.append(newQuizCreatorName);
   newFooterDiv.append(newQuizNumOfQuestions);
   newFooter.append(newFooterDiv);
-  newFooterDiv.append(newShareBtnDiv);
+  newFooterDiv.append(newShareBtn);
+  newFooterDiv.append(newUrlBox);
+
+  newShareBtn.click(function(e){
+    newUrlBox.toggle();
+  });
 
 
   // adding new elements to article
@@ -49,8 +56,13 @@ const appendToBody = function(quizElement) {
   $('.quiz-container').append(quizElement)
 };
 
+
+
+
+
+
 $(() => {
-  console.log('test')
+
   $.ajax({
     method: 'GET',
     url: '/api/quizzes'
@@ -61,5 +73,7 @@ $(() => {
       const quizElement = createQuizElement(quiz)
       appendToBody(quizElement);
     }
+
+    $('.urlBox').hide();
   })
 });
