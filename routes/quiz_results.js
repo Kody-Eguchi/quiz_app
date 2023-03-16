@@ -121,15 +121,18 @@ const storeAnswers = function(obj) {
 
 // URL should be wildcard /:id
 
-router.post('/', (req, res) => {
+router.post('/:quiz_id', (req, res) => {
   const submittedAnswers = req.body;
-
+  const {quiz_id} = req.params;
   const userEmail = req.cookies.username;
 
   markQuiz(userEmail, submittedAnswers)
   .then(async () => {
     await Promise.all(storeAnswers(submittedAnswers));
-    res.status(200);
+    // res.status(200);
+    // const pathname = window.location.pathname.split('/')
+    // const quizId = pathname[pathname.length - 1]
+    res.redirect(301, `/show_quiz_results/${quiz_id}`);
 
   })
   .catch(err => {

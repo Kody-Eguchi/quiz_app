@@ -110,6 +110,8 @@ const renderQuestionElement = function(questionArr) {
 $(() => {
   const pathname = window.location.pathname.split('/')
   const quiz_id = pathname[pathname.length - 1]
+  $('#quiz-result-form').attr("action", `/quiz_results/${quiz_id}`)
+
 
   $.ajax({
     method: 'GET',
