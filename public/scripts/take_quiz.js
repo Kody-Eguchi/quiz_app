@@ -8,6 +8,7 @@ const createAllQuestionsContainerHeader = function (questionObj) {
     const newQuestionCategory = $(`<span class='questionCategory'>`).text(`${category}`);
     const newQuestionName = $("<p class='questionName'>").text(`${name}`);
 
+
     newHeaderDiv.append(newQuestionName);
     newHeaderDiv.append(newQuestionCategory);
     newHeader.append(newHeaderDiv);
@@ -107,10 +108,33 @@ const renderQuestionElement = function(questionArr) {
   $('.all-questions-container').append($footer);
 };
 
+const createShareBtnElement = function(para){
+  const newUrlBox = $(`<input id='urlBox' value=${para}>`)
+  $('.share-btn-container').append(newUrlBox);
+};
+
+
+
+
 $(() => {
   const pathname = window.location.pathname.split('/')
   const quiz_id = pathname[pathname.length - 1]
   $('#quiz-result-form').attr("action", `/quiz_results/${quiz_id}`)
+
+
+  const shareUrl = `/take_quiz/${quiz_id}`;
+  createShareBtnElement(shareUrl);
+  $('#urlBox').hide();
+
+
+  //SHARE URL BUTTON
+  $('#share-btn').click(function(e){
+    e.preventDefault();
+    $('#urlBox').toggle();
+    // window.open(shareUrl);
+
+});
+
 
 
   $.ajax({
