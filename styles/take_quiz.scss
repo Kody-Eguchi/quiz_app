@@ -80,12 +80,28 @@ body {
   margin-right: 4%;
 }
 
-.share-btn-container {
-  display: inline-block;
+.submit-and-share-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 8%;
+  gap: 10px;
+  margin-top: 15px;
 }
 
 .test {
   display: flex;
+}
+
+#submit-quiz {
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  padding-right: 8px;
+  padding-left: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 20px;
 }
 
 
