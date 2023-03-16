@@ -38,7 +38,11 @@ router.get('/:quiz_result_id', (req, res) => {
   const useremail = req.cookies.username;
   getUserIdByEmail(useremail)
   .then(userId => {
-    const queryString = `SELECT * FROM quiz_results WHERE id = $1 AND participant_id = $2`;
+    const queryString = `SELECT * FROM quiz_results
+                          WHERE quiz_id = $1
+                          AND participant_id = $2
+                          ORDER BY completed_at DESC
+                          LIMIT 1`;
     return db.query(queryString, [quiz_result_id, userId])
 
   })

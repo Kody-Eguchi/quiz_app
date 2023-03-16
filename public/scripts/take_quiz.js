@@ -121,7 +121,8 @@ $(() => {
   })
 
   $("#submit-quiz").on('click', function(e) {
-    e.preventDefault();
+    // e.preventDefault();
+    // window.location.href = 'http://localhost:8080/show_quiz_results/6';
   });
 
 
