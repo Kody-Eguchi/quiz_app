@@ -76,7 +76,10 @@ app.use('/show_quiz_results', showQuizResultRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index')
+  if (!req.cookies.username) {
+    res.redirect('/login');
+  }
+  res.render('index');
 });
 
 app.listen(PORT, () => {
