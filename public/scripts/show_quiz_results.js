@@ -56,7 +56,7 @@ $(() => {
   const quizId = pathname[pathname.length - 1];
 
 
-  const shareUrl = `/show_quiz_results/${quizId}`;
+  const shareUrl = `http://localhost:8080/show_quiz_results/${quizId}`;
   createShareBtnElement(shareUrl);
   $('#urlBox').hide();
 

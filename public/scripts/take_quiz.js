@@ -122,7 +122,7 @@ $(() => {
   $('#quiz-result-form').attr("action", `/quiz_results/${quiz_id}`)
 
 
-  const shareUrl = `/take_quiz/${quiz_id}`;
+  const shareUrl = `http://localhost:8080/take_quiz/${quiz_id}`;
   createShareBtnElement(shareUrl);
   $('#urlBox').hide();
 
