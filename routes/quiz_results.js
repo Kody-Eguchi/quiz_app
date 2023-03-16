@@ -45,6 +45,17 @@ const getUserIdByEmail = function(email) {
 }
 
 
+//GET NUMBER OF ATTEPT BY USER_ID AND QUIZ_ID
+const getNumOfAtteptByUser = function(userId, quizId) {
+  const queryParams = [quizId, userId];
+  const queryString = `SELECT count(*) FROM quiz_results WHERE quiz_id = $1 AND participant_id = $2;`;
+  db.query(queryString, queryParams)
+  .then(data => {
+    return data.rows[0].count;
+  })
+}
+
+
 //MARK ANSWERED QUESTIONS AND STORE DATA INTO QUIZ_RESULTS TABLE
 const markQuiz = async function(currentUserEmail, obj) {
 
