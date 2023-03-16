@@ -3,6 +3,7 @@ const createQuizResultElement = function(quizResultObj) {
   const NumOfCorrectAnswers = quizResultObj.number_of_correct_answer;
   const NumOfIncorrectAnswers = quizResultObj.number_of_wrong_answer;
   const result = quizResultObj.result;
+  const numOfAttempt = quizResultObj.num_of_attempt;
 
   // new quiz article
   const newArticle = $("<article class='quiz-result-display'>");
@@ -30,8 +31,10 @@ const createQuizResultElement = function(quizResultObj) {
   const newFooter = $("<footer class='quiz-result-footer'>");
   const newFooterDiv = $("<div>");
   // changed it to dynamic
+  const newNumOfAttempt = $('<p class="num-attept">').text(`Number of Attempt: ${numOfAttempt}`);
   const newQuizResultShareButton = $("<button class='quiz-result-share-button'>").text('Share');
 
+  newFooterDiv.append(newNumOfAttempt);
   newFooterDiv.append(newQuizResultShareButton);
   newFooter.append(newFooterDiv);
 

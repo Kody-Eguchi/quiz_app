@@ -49,7 +49,7 @@ const getUserIdByEmail = function(email) {
 const getNumOfAtteptByUser = function(userId, quizId) {
   const queryParams = [quizId, userId];
   const queryString = `SELECT count(*) FROM quiz_results WHERE quiz_id = $1 AND participant_id = $2;`;
-  db.query(queryString, queryParams)
+  return db.query(queryString, queryParams)
   .then(data => {
     return data.rows[0].count;
   })
@@ -84,13 +84,17 @@ const markQuiz = async function(currentUserEmail, obj) {
 
   getUserIdByEmail(currentUserEmail)
     .then((userId) => {
-      const result = Math.floor(correctAnswersCount/(correctAnswersCount + incorrectAnswersCount) * 100);
-      const queryParams = [quizId, userId, correctAnswersCount, incorrectAnswersCount, result, 'blahh'];
-      const queryString = `
-       INSERT INTO quiz_results (quiz_id, participant_id, number_of_correct_answer, number_of_wrong_answer, result, quiz_result_url  )
-       VALUES ($1, $2, $3, $4, $5, $6);
-     `;
-      return db.query(queryString, queryParams)
+      getNumOfAtteptByUser(userId, quizId)
+      .then((numOfAttempt) => {
+        const result = Math.floor(correctAnswersCount/(correctAnswersCount + incorrectAnswersCount) * 100);
+        const queryParams = [quizId, userId, correctAnswersCount, incorrectAnswersCount, result, numOfAttempt];
+        const queryString = `
+         INSERT INTO quiz_results (quiz_id, participant_id, number_of_correct_answer, number_of_wrong_answer, result, num_of_attempt)
+         VALUES ($1, $2, $3, $4, $5, $6);
+       `;
+        return db.query(queryString, queryParams)
+      });
+
     })
   });
 
