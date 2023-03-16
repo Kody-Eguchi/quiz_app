@@ -28,7 +28,7 @@ router.post('/:quiz_id', (req, res) => {
 
   const { question, option1, option2, option3, option4, 'correct-answer': correctAnswer } = req.body;
   const { quiz_id } = req.params;
-  const queryParams = [quiz_id, question, option1, option2, option3, option4, correctAnswer];
+  const queryParams = [quiz_id, question, correctAnswer, option1, option2, option3, option4];
 
   db.query(`INSERT INTO questions (quiz_id, question, correct_answer, option_1, option_2, option_3, option_4)
   VALUES ($1, $2, $3, $4, $5, $6, $7);`, queryParams)

@@ -23,8 +23,6 @@ const getQuizId = function(question_id){
 
 };
 
-// getQuizId(3).then(data => console.log(data));
-
 //RETURN CORRECT ANSWER BASED ON QUESTION ID
 const getCorrectAnswer = function(question_id){
   const queryString = `SELECT correct_answer FROM questions WHERE id = $1;`;
@@ -34,9 +32,6 @@ const getCorrectAnswer = function(question_id){
       return data.rows[0].correct_answer;
     });
 };
-
-// getCorrectAnswer(3)
-//   .then(result => console.log(result));
 
 
 //GET USER ID BY EMAIL
@@ -51,42 +46,43 @@ const getUserIdByEmail = function(email) {
 
 
 //MARK ANSWERED QUESTIONS AND STORE DATA INTO QUIZ_RESULTS TABLE
-const markQuiz = function(currentUserEmail, obj) {
-  let correct_answers = 0;
-  let incorrect_answers = 0;
-  for (const [question_id, given_answer] of Object.entries(obj)) {
-
-    console.log('question_id', question_id);
-    console.log('given_answer', given_answer);
+const markQuiz = async function(currentUserEmail, obj) {
 
 
-    const correctAnswer = getCorrectAnswer(question_id);
-      if (correctAnswer === given_answer) {
-        correct_answers ++;
-      } else {
-        incorrect_answers ++
-      }
-   }
+
+  const getCorrectAnswerPromises = Object.entries(obj).map(([question_id]) => {
+    return getCorrectAnswer(question_id)
+  })
+
+  const givenAnswers =  Object.entries(obj).map(([_,given_answer]) => given_answer)
+
+  const { correctAnswersCount, incorrectAnswersCount } = await Promise.all(getCorrectAnswerPromises).then((correctAnswers) => {
+    let correctAnswersCount = 0;
+    let incorrectAnswersCount = 0;
+
+    for (let i = 0; i <  correctAnswers.length; i++) {
+      correctAnswers[i] === givenAnswers[i] ? correctAnswersCount++ : incorrectAnswersCount++
+    }
+
+    return { correctAnswersCount, incorrectAnswersCount }
+  })
+
    const quizIdArr = Object.keys(obj);
-   const quizId = getQuizId(quizIdArr[0]);
 
+ return getQuizId(quizIdArr[0]).then(quizId => {
 
-   const userId = getUserIdByEmail(currentUserEmail);
+  getUserIdByEmail(currentUserEmail)
+    .then((userId) => {
+      const result = Math.floor(correctAnswersCount/(correctAnswersCount + incorrectAnswersCount) * 100);
+      const queryParams = [quizId, userId, correctAnswersCount, incorrectAnswersCount, result, 'blahh'];
+      const queryString = `
+       INSERT INTO quiz_results (quiz_id, participant_id, number_of_correct_answer, number_of_wrong_answer, result, quiz_result_url  )
+       VALUES ($1, $2, $3, $4, $5, $6);
+     `;
+      return db.query(queryString, queryParams)
+    })
+  });
 
-
-   const result = Math.floor(correct_answers/(correct_answers + incorrect_answers) * 100);
-   const queryParams = [quizId, userId, correct_answers, incorrect_answers, result];
-   const queryString = `
-     INSERT INTO quiz_results (quiz_id, participant_id, number_of_correct_answer, number_of_incorrect_answer, result)
-     VALUES ($1, $2, $3, $4, $5);
-   `;
-   db.query(queryString, queryParams)
-   .then(data => {
-     res.status(200);
-   })
-   .catch(err => {
-     res.status(500);
-   });
 
 };
 
@@ -107,25 +103,16 @@ const findLatestQuizResultIdByUserID = function(userID) {
 };
 
 //INSERT DATA TO ANSWERED QUESTION TABLE
-const storeAnswers = function(quizResultID ,obj) {
-  for (const [question_id, given_answer] of Object.entries(obj)) {
-   console.log('question_id', question_id);
-   console.log('given_answer', given_answer);
+const storeAnswers = function(obj) {
+  return Object.entries(obj).map(([question_id, given_answer]) => {
+    const queryParams = [question_id, given_answer];
+    const queryString = `
+    INSERT INTO answered_questions (question_id, given_answer)
+    VALUES ($1, $2);
+  `;
+    return db.query(queryString, queryParams)
+  })
 
-   const queryParams = [question_id, quizResultID, given_answer];
-   const queryString = `
-   INSERT INTO answered_questions (question_id, quiz_result_id, given_answer)
-   VALUES ($1, $2, $3);
- `;
-   db.query(queryString, queryParams)
-   .then(data => {
-     res.status(200);
-   })
-   .catch(err => {
-     res.status(500);
-   });
-
-  }
 
  }
 
@@ -134,23 +121,26 @@ const storeAnswers = function(quizResultID ,obj) {
 
 // URL should be wildcard /:id
 
-router.post('/', (req, res) => {
-  console.log(req.body);
-  // res.send(req.body);
+router.post('/:quiz_id', (req, res) => {
   const submittedAnswers = req.body;
-  console.log(submittedAnswers);
-
+  const {quiz_id} = req.params;
   const userEmail = req.cookies.username;
-// console.log(user);
 
-  markQuiz(userEmail, submittedAnswers);
-  // storeAnswers(submittedAnswers);
+  markQuiz(userEmail, submittedAnswers)
+  .then(async () => {
+    await Promise.all(storeAnswers(submittedAnswers));
+    // res.status(200);
+    // const pathname = window.location.pathname.split('/')
+    // const quizId = pathname[pathname.length - 1]
+    res.redirect(301, `/show_quiz_results/${quiz_id}`);
 
-  const userID = getUserIdByEmail(userEmail);
+  })
+  .catch(err => {
+    res.status(500);
+  });
 
-  const quizResultID = findLatestQuizResultIdByUserID(userID)
 
-  storeAnswers(quizResultID, submittedAnswers);
+
 });
 
 
