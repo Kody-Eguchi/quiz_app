@@ -110,7 +110,7 @@ const renderQuestionElement = function(questionArr) {
 
 const createShareBtnElement = function(para){
   const newUrlBox = $(`<input id='urlBox' value=${para}>`)
-  $('.share-btn-container').append(newUrlBox);
+  $('#show-url-box').append(newUrlBox);
 };
 
 
