@@ -10,11 +10,14 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/take_quiz.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
@@ -22,14 +25,14 @@
 </head>
 
 <body>
-  <div class="share-btn-container">
-
-    <i class="fa-solid fa-share" id="share-btn"></i>
-  </div>
   <form action="/quiz_results" method="POST" id="quiz-result-form">
     <div class="all-questions-container"></div>
     <button type="submit" id="submit-quiz">Submit</button>
   </form>
+
+  <div class="share-btn-container">
+    <i class="fa-solid fa-share" id="share-btn"></i>
+  </div>
 </body>
 
 </html>
