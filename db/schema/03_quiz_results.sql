@@ -8,5 +8,5 @@ CREATE TABLE quiz_results (
   number_of_wrong_answer INTEGER NOT NULL,
   result INTEGER NOT NULL,
   completed_at TIMESTAMP DEFAULT Now(),
-  num_of_attempt INTEGER DEFAULT 0
+  num_of_attempt INTEGER DEFAULT 1
 );

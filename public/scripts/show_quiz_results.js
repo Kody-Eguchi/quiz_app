@@ -32,10 +32,8 @@ const createQuizResultElement = function(quizResultObj) {
   const newFooterDiv = $("<div>");
   // changed it to dynamic
   const newNumOfAttempt = $('<p class="num-attept">').text(`Number of Attempt: ${numOfAttempt}`);
-  const newQuizResultShareButton = $("<button class='quiz-result-share-button'>").text('Share');
 
   newFooterDiv.append(newNumOfAttempt);
-  newFooterDiv.append(newQuizResultShareButton);
   newFooter.append(newFooterDiv);
 
 
