@@ -72,7 +72,7 @@ const markQuiz = async function(currentUserEmail, obj) {
     let incorrectAnswersCount = 0;
 
     for (let i = 0; i <  correctAnswers.length; i++) {
-      correctAnswers[i] === givenAnswers[i] ? correctAnswersCount++ : incorrectAnswersCount++
+      correctAnswers[i].includes(givenAnswers[i]) ? correctAnswersCount++ : incorrectAnswersCount++
     }
 
     return { correctAnswersCount, incorrectAnswersCount }
@@ -144,9 +144,6 @@ router.post('/:quiz_id', (req, res) => {
   markQuiz(userEmail, submittedAnswers)
   .then(async () => {
     await Promise.all(storeAnswers(submittedAnswers));
-    // res.status(200);
-    // const pathname = window.location.pathname.split('/')
-    // const quizId = pathname[pathname.length - 1]
     res.redirect(301, `/show_quiz_results/${quiz_id}`);
 
   })

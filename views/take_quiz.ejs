@@ -25,14 +25,21 @@
 </head>
 
 <body>
-  <form action="/quiz_results" method="POST" id="quiz-result-form">
-    <div class="all-questions-container"></div>
-    <button type="submit" id="submit-quiz">Submit</button>
-  </form>
+  <header class="take-quiz-page-header">
+    <h1 class="header-title">Quiz App</h1>
+  </header>
+  <h3 class="quiz-header">Good luck!</h3>
+  <section class="all-questions-section">
+    <form action="/quiz_results" method="POST" id="quiz-result-form">
+      <div class="all-questions-container"></div>
+      <button type="submit" id="submit-quiz">Submit</button>
+    </form>
+  </section>
 
-  <div class="share-btn-container">
-    <i class="fa-solid fa-share" id="share-btn"></i>
-  </div>
+      <div class="share-btn-container">
+        <i class="fa-solid fa-share" id="share-btn"></i>
+      </div>
+
 </body>
 
 </html>

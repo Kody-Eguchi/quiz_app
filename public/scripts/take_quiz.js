@@ -4,9 +4,9 @@ const createAllQuestionsContainerHeader = function (questionObj) {
 
     // question header elements
     const newHeader = $("<header class='questionsHeader'>");
-    const newHeaderDiv = $("<div>");
-    const newQuestionCategory = $(`<span class='questionCategory'>`).text(`${category}`);
-    const newQuestionName = $("<p class='questionName'>").text(`${name}`);
+    const newHeaderDiv = $("<div class='header-div'>");
+    const newQuestionCategory = $(`<span class='question-category'>`).text(`Category: ${category}`);
+    const newQuestionName = $("<p class='question-name'>").text(`${name}`);
 
 
     newHeaderDiv.append(newQuestionName);
@@ -19,13 +19,13 @@ const createAllQuestionsContainerFooter = function (questionObj) {
   const numOfQuestions = questionObj.num_of_question;
 
     // question footer elements
-  const newFooter = $("<footer class='questionFooter'>");
+  const newFooter = $("<footer class='question-footer'>");
 
   // const newFooterP = $("<p>").text(`${questionDate}`);
-  const newFooterDiv = $("<div>");
+  const newFooterDiv = $("<div class='question-footer-div'>");
   // changed it to dynamic
-  const newQuestionNumOfQuestions = $("<p class='questionNumOfQuestions'>").text( `Total Questions: ${numOfQuestions}`);
-  const newQuestionCreatorName = $("<p class='questionCreatorName'>").text(`Created By: Dave`);
+  const newQuestionNumOfQuestions = $("<p class='question-num-of-questions'>").text( `Total Questions: ${numOfQuestions}`);
+  const newQuestionCreatorName = $("<p class='question-creator-name'>").text(`Created By: Dave`);
 
   newFooterDiv.append(newQuestionCreatorName);
   newFooterDiv.append(newQuestionNumOfQuestions);
@@ -44,7 +44,7 @@ const createQuestionElement = function(questionObj) {
   const option4 = questionObj.option_4;
 
   // new question article
-  const newArticle = $("<article class='questionDisplay'>");
+  const newArticle = $("<article class='question-display'>");
 
   // question body elements
   // added question description for css
@@ -53,20 +53,20 @@ const createQuestionElement = function(questionObj) {
   const newAnswerList = $("<ul class='answer-list'>");
   //ANSWER - OPTION1
   const newAnswerOne = $("<li>");
-  const newAnswerOneInput = $(`<input type='radio' name=${question_id} class='answer option-1' value=${option1}>`);
-  const newAnswerOneLabel = $("<label for='option-1'>").text(`${option1}`);
+  const newAnswerOneInput = $(`<input type='radio' name=${question_id} class='answer-option-1' value=${option1}>`);
+  const newAnswerOneLabel = $("<label for='option-1'>").text(`  ${option1}`);
   //ANSWER - OPTION2
   const newAnswerTwo = $("<li>");
-  const newAnswerTwoInput = $(`<input type='radio' name=${question_id} class='answer option-2' value=${option2}>`);
-  const newAnswerTwoLabel = $("<label for='option-2'>").text(`${option2}`);
+  const newAnswerTwoInput = $(`<input type='radio' name=${question_id} class='answer-option-2' value=${option2}>`);
+  const newAnswerTwoLabel = $("<label for='option-2'>").text(`  ${option2}`);
   //ANSWER - OPTION3
   const newAnswerThree = $("<li>");
-  const newAnswerThreeInput = $(`<input type='radio' name=${question_id} class='answer option-3' value=${option3}>`);
-  const newAnswerThreeLabel = $("<label for='option-3'>").text(`${option3}`);
+  const newAnswerThreeInput = $(`<input type='radio' name=${question_id} class='answer-option-3' value=${option3}>`);
+  const newAnswerThreeLabel = $("<label for='option-3'>").text(`  ${option3}`);
   //ANSWER - OPTION4
   const newAnswerFour = $("<li>");
-  const newAnswerFourInput = $(`<input type='radio' name=${question_id} class='answer option-4' value=${option4}>`);
-  const newAnswerFourLabel = $("<label for='option-4'>").text(`${option4}`);
+  const newAnswerFourInput = $(`<input type='radio' name=${question_id} class='answer-option-4' value=${option4}>`);
+  const newAnswerFourLabel = $("<label for='option-4'>").text(`  ${option4}`);
 
   newAnswerOne.append(newAnswerOneInput);
   newAnswerOne.append(newAnswerOneLabel);
