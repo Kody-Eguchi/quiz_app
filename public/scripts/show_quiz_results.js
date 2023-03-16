@@ -44,8 +44,33 @@ const createQuizResultElement = function(quizResultObj) {
   return newArticle;
 };
 
+const createShareBtnElement = function(para){
+  const newUrlBox = $(`<input id='urlBox' value=${para}>`)
+  $('.share-btn-container').append(newUrlBox);
+};
+
+
 
 $(() => {
+  const pathname = window.location.pathname.split('/');
+  const quizId = pathname[pathname.length - 1];
+
+
+  const shareUrl = `/show_quiz_results/${quizId}`;
+  createShareBtnElement(shareUrl);
+  $('#urlBox').hide();
+
+
+  //SHARE URL BUTTON
+  $('#share-btn').click(function(e){
+    e.preventDefault();
+    $('#urlBox').toggle();
+    // window.open(shareUrl);
+
+});
+
+
+
 
   $.ajax({
     method: 'GET',
@@ -58,8 +83,8 @@ $(() => {
       console.log('Error: ', err);
     })
 
-  const pathname = window.location.pathname.split('/')
-  const quizId = pathname[pathname.length - 1]
+
+
 
   $.ajax({
     method: 'GET',
