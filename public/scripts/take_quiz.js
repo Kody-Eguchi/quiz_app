@@ -25,9 +25,7 @@ const createAllQuestionsContainerFooter = function (questionObj) {
   const newFooterDiv = $("<div class='question-footer-div'>");
   // changed it to dynamic
   const newQuestionNumOfQuestions = $("<p class='question-num-of-questions'>").text( `Total Questions: ${numOfQuestions}`);
-  const newQuestionCreatorName = $("<p class='question-creator-name'>").text(`Created By: Dave`);
 
-  newFooterDiv.append(newQuestionCreatorName);
   newFooterDiv.append(newQuestionNumOfQuestions);
   newFooter.append(newFooterDiv);
 
