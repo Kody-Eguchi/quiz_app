@@ -47,7 +47,7 @@ const createQuizResultElement = function(quizResultObj) {
 
 const createShareBtnElement = function(para){
   const newUrlBox = $(`<input id='urlBox' value=${para}>`)
-  $('.share-btn-container').append(newUrlBox);
+  $('.share-btn-container').prepend(newUrlBox);
 };
 
 
