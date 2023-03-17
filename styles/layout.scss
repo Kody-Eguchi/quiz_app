@@ -14,6 +14,11 @@ $color-grey-6: #12181b;
 body {
   font-family: 'Source Sans Pro', sans-serif;
 
+
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   #quiz-header {
 
     h1 {
