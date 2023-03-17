@@ -14,6 +14,35 @@ $color-grey-6: #12181b;
 body {
   font-family: 'Source Sans Pro', sans-serif;
 
+  #quiz-header {
+
+    h1 {
+      padding: 10px;
+      margin: 0;
+    }
+
+    color: $color-white;
+    display: flex;
+    justify-content: space-between;
+    background-color: $color-primary;
+    padding: 10px 0;
+
+    .desktop-nav {
+      visibility: hidden;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-right: 3%;
+
+      a {
+        color: white;
+        margin-right: 4%;
+        align-self: center;
+        text-decoration: none;
+      }
+    }
+  }
+
   nav {
     display: flex;
     justify-content: space-around;
@@ -38,15 +67,7 @@ body {
     }
   }
 
-  #quiz-header {
-    background-color: $color-primary;
-    padding: 10px 0;
 
-    h1 {
-      padding: 10px;
-      margin: 0;
-    }
-  }
 
   .quizDescription {
     color: white;
@@ -138,13 +159,20 @@ body {
   body {
     // background-color: #f0f;
 
+
     nav {
-      display: none;
+      visibility: hidden;
     }
 
     #quiz-header {
       background-color: $color-primary;
       padding: 10px 0;
+
+      .desktop-nav {
+        visibility: visible;
+      }
+
+
 
       h1 {
         padding: 10px;
