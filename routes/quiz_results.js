@@ -86,6 +86,7 @@ const markQuiz = async function(currentUserEmail, obj) {
     .then((userId) => {
       getNumOfAtteptByUser(userId, quizId)
       .then((numOfAttempt) => {
+        numOfAttempt++;
         const result = Math.floor(correctAnswersCount/(correctAnswersCount + incorrectAnswersCount) * 100);
         const queryParams = [quizId, userId, correctAnswersCount, incorrectAnswersCount, result, numOfAttempt];
         console.log('queryParams', queryParams)
