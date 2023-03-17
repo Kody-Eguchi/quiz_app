@@ -14,6 +14,9 @@ $color-grey-6: #12181b;
 body {
   font-family: 'Source Sans Pro', sans-serif;
 
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+
   #login-header {
 
     h1 {
@@ -41,6 +44,10 @@ body {
         text-decoration: none;
       }
     }
+  }
+
+  .login-label {
+    font-weight: 600;
   }
 
   nav {
