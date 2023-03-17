@@ -23,6 +23,7 @@ body {
   margin-right: 4%;
   align-self: center;
   text-decoration: none;
+  visibility: hidden;
 }
 
 .all-questions-container {
@@ -97,9 +98,6 @@ body {
   margin-top: 15px;
 }
 
-.test {
-  display: flex;
-}
 
 #submit-quiz {
   border: none;
@@ -111,3 +109,43 @@ body {
   padding-bottom: 6px;
   border-radius: 20px;
 }
+
+.mobile-nav-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  border: 1px solid black;
+  margin: 0 auto;
+  bottom: 0;
+  padding: 10px;
+
+  a {
+    text-decoration: none;
+
+    i {
+      font-size: 2rem;
+    }
+
+    &:visited {
+      color: cornflowerblue;
+    }
+  }
+}
+
+
+
+@media only screen and (min-width: 769px) {
+
+  .home-link {
+    visibility: visible;
+  }
+
+  .mobile-nav-bar {
+    visibility: hidden;
+  }
+}
+
+
