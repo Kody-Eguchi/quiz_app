@@ -1,6 +1,6 @@
 // COLOR PALLETTE
-$color-primary:turquoise;
-$color-secondary:turquoise;
+$color-primary:cornflowerblue;
+$color-secondary:darkblue;
 $color-black : black;
 $color-white: white;
 $color-grey0: #f8f8f8;
@@ -135,27 +135,7 @@ body {
     // background-color: #f0f;
 
     nav {
-      display: flex;
-      justify-content: space-around;
-      align-content: center;
-      position: fixed;
-      bottom: 0;
-      background-color: white;
-      width: 100%;
-      border: 1px solid black;
-      padding: 10px;
-
-      a {
-        text-decoration: none;
-
-        i {
-          font-size: 3rem;
-        }
-
-        &:visited {
-          color: $color-primary;
-        }
-      }
+      display: none;
     }
 
     #quiz-header {
