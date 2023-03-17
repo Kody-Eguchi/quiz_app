@@ -1,6 +1,7 @@
 const createQuizElement = function(quiz) {
   // variables from user object to be used in object
   const quizId = quiz.id;
+  const userId = quiz.creator_id;
   const name = quiz.name;
   const category = quiz.category;
   const description = quiz.description;
@@ -12,7 +13,7 @@ const createQuizElement = function(quiz) {
   // quiz header elements
   const newHeader = $("<header class='quizHeader'>");
   const newHeaderDiv = $("<div>");
-  const newQuizCategory = $(`<span class='quizCategory'>`).text(`${category}`);
+  const newQuizCategory = $(`<span class='quizCategory'>`).text(`Category: ${category}`);
   const newQuizName = $("<p class='quizName'>").text(`${name}`);
 
   newHeaderDiv.append(newQuizName);
@@ -24,22 +25,24 @@ const createQuizElement = function(quiz) {
   const newQuizDescriptionP = $("<p class='quizDescription'>").text(`${description}`);
 
   // quiz footer elements
-  const newFooter = $("<footer class='QuizFooter'>");
+  const newFooter = $("<footer class='quizFooter'>");
   // const newFooterP = $("<p>").text(`${quizDate}`);
   const newFooterDiv = $("<div>");
   // changed it to dynamic
   const newQuizNumOfQuestions = $("<p class='quizNumOfQuestions'>").text( `Total Questions: ${numOfQuestions}`);
-  const newQuizCreatorName = $("<p class='quizCreatorName'>").text(`Created By: Dave`);
-  const newShareBtn = $(`<i class="fa-solid fa-share" class="share-btn">`)
-  const newUrlBox = $(`<input class='urlBox' value="http://localhost:8080/take_quiz/${quizId}">`)
-  const newRedirecBtn = $(`<a href="http://localhost:8080/take_quiz/${quizId}">`).text('Take this Quiz Now!');
+  const newQuizCreatorName = $("<p class='quizCreatorName'>").text(`Creator ID: ${userId}`);
+  const newShareBtn = $(`<i class="fa-solid fa-share" class="share-btn">`);
+  const newUrlBox = $(`<input class='urlBox' value="http://localhost:8080/take_quiz/${quizId}">`);
+  const newRedirecBtn = $(`<a href="http://localhost:8080/take_quiz/${quizId}">`);
+  const newTakeQuizIcon = $('<i class="fa-solid fa-pencil">');
 
   newFooterDiv.append(newQuizCreatorName);
   newFooterDiv.append(newQuizNumOfQuestions);
+  newRedirecBtn.append(newTakeQuizIcon);
   newFooterDiv.append(newRedirecBtn);
   newFooterDiv.append(newShareBtn);
-  newFooterDiv.append(newUrlBox);
   newFooter.append(newFooterDiv);
+  newFooter.append(newUrlBox);
 
   newShareBtn.click(function(e){
     newUrlBox.toggle();

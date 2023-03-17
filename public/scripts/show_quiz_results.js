@@ -11,9 +11,9 @@ const createQuizResultElement = function(quizResultObj) {
   // quiz header elements
   const newHeader = $("<header class='quiz-header'>");
   const newHeaderDiv = $("<div>");
-  const newHeaderP = $(`<p class='header-p'>`).text('Your score');
+  const newHeaderH3 = $(`<h3 class='header-h3'>`).text('Your score');
 
-  newHeaderDiv.append(newHeaderP);
+  newHeaderDiv.append(newHeaderH3);
   newHeader.append(newHeaderDiv);
 
   // quiz body elements
@@ -94,7 +94,7 @@ $(() => {
     .then(quizResultObj => {
       // console.log(quizResultObj[0]);
       const $quizResultDisplay = createQuizResultElement(quizResultObj[0]);
-      $('.quiz-result-display-container').append($quizResultDisplay);
+      $('.quiz-result-display-container').prepend($quizResultDisplay);
     })
     .catch(err => {
       console.log('Error: ', err);

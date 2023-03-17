@@ -1,8 +1,5 @@
-// See: https://sass-lang.com/
-
-
 // COLOR PALLETTE
-$color-primary:coral;
+$color-primary:turquoise;
 $color-secondary:turquoise;
 $color-black : black;
 $color-white: white;
@@ -14,54 +11,231 @@ $color-grey-4: #454e56;
 $color-grey-5: #2a2e35;
 $color-grey-6: #12181b;
 
-body,
-html {
-  margin: 0;
-  // padding:0;
-}
+body {
+  font-family: 'Source Sans Pro', sans-serif;
 
-nav {
-  display: flex;
-  justify-content: space-around;
-  align-content: center;
-  position: fixed;
-  bottom: 0;
-  background-color: white;
-  width: 100%;
-  border: 1px solid black;
-  padding: 10px;
+  nav {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
 
-  a {
-    text-decoration: none;
+    a {
+      text-decoration: none;
 
-    i {
-      font-size: 3rem;
-    }
+      i {
+        font-size: 3rem;
+      }
 
-    &:visited {
-      color: blue;
+      &:visited {
+        color: $color-primary;
+      }
     }
   }
-}
 
-.quiz-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-
-  .quizDisplay {
+  #quiz-header {
     background-color: $color-primary;
-    width: 90%;
-    border-radius: 3px;
+    padding: 10px 0;
 
-    .quizHeader {
-      font-size: 1.5rem;
-      background-color: $color-grey-1;
+    h1 {
+      padding: 10px;
+      margin: 0;
+    }
+  }
+
+  main {
+    padding-bottom: 100px;
+
+    h3 {
+      margin-left: 10px;
+    }
+
+    .quiz-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+
+      .quizDisplay {
+        background-color: $color-primary;
+        width: 90%;
+        border-radius: 3px;
+        padding: 10px;
+
+        .quizHeader {
+          background-color: $color-grey-1;
+          border-radius: 3px;
+
+          div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+
+            .quizName {
+              font-size: 1.5rem;
+            }
+
+            .quizCategory {
+              padding: 10px;
+            }
+          }
+        }
+
+        .quizFooter {
+          div {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 3px;
+            background-color: $color-grey-1;
+
+            a {
+              text-decoration: none;
+
+              i {
+                font-size: 1.2rem;
+              }
+
+              &:visited {
+                color: $color-black;
+              }
+            }
+          }
+
+          input {
+            margin-top: 10px;
+            border-radius: 3px;
+            width: 90%;
+          }
+        }
+      }
+    }
+  }
+
+
+}
+
+@media only screen and (min-width: 769px) {
+  body {
+    // background-color: #f0f;
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+      position: fixed;
+      bottom: 0;
+      background-color: white;
+      width: 100%;
+      border: 1px solid black;
+      padding: 10px;
+
+      a {
+        text-decoration: none;
+
+        i {
+          font-size: 3rem;
+        }
+
+        &:visited {
+          color: $color-primary;
+        }
+      }
+    }
+
+    #quiz-header {
+      background-color: $color-primary;
+      padding: 10px 0;
+
+      h1 {
+        padding: 10px;
+        margin: 0;
+      }
+    }
+
+    main {
+      padding-bottom: 100px;
+
+      h3 {
+        margin-left: 10px;
+      }
+
+      .quiz-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px;
+        width: 100%;
+
+        .quizDisplay {
+          background-color: $color-primary;
+          width: 45%;
+          border-radius: 3px;
+          padding: 10px;
+
+          .quizHeader {
+            background-color: $color-grey-1;
+            border-radius: 3px;
+
+            div {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              align-items: center;
+              padding: 10px;
+
+              .quizName {
+                font-size: 1.5rem;
+              }
+
+              .quizCategory {
+                padding: 10px;
+              }
+            }
+          }
+
+          .quizFooter {
+            div {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              border-radius: 3px;
+              background-color: $color-grey-1;
+
+              a {
+                text-decoration: none;
+
+                i {
+                  font-size: 1.2rem;
+                }
+
+                &:visited {
+                  color: $color-black;
+                }
+              }
+            }
+
+            input {
+              margin-top: 10px;
+              border-radius: 3px;
+              width: 90%;
+            }
+          }
+        }
+      }
     }
 
 
 
-  }
 
+  }
 }
