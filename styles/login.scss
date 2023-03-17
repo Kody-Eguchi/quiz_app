@@ -17,6 +17,18 @@ body {
   background-color: #ffffff;
   background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
 
+  .headers {
+    text-align: center;
+    margin-top: 200px;
+  }
+
+  .sign-in-header,
+  .sign-in-subheader {
+    margin: 0;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+
   #login-header {
 
     h1 {
@@ -81,7 +93,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-content: center;
-
     margin: 0 auto;
 
 
