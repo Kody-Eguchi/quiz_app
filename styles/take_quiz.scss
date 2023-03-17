@@ -7,7 +7,7 @@ body {
 }
 
 .take-quiz-page-header {
-  background-color: cornflowerblue;
+  background-color: #0B1C1C;
   width: 100%;
   height: 80px;
   display: flex;
@@ -48,7 +48,7 @@ body {
   border-color: black;
   margin-left: 5%;
   margin-right: 5%;
-  background-color: cornflowerblue;
+  background-color: #007373;
 }
 
 .header-div {
@@ -117,12 +117,12 @@ body {
 
 #submit-quiz {
   border: none;
-  background-color: cornflowerblue;
+  background-color: #4C463A;
   color: white;
-  padding-right: 8px;
-  padding-left: 8px;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-radius: 20px;
 }
 
@@ -131,7 +131,7 @@ body {
   justify-content: space-around;
   align-items: center;
   position: fixed;
-  background-color: white;
+  background-color: #0B1C1C;
   width: 100%;
   border: 1px solid black;
   margin: 0 auto;
@@ -146,7 +146,7 @@ body {
     }
 
     &:visited {
-      color: cornflowerblue;
+      color: white;
     }
   }
 }
