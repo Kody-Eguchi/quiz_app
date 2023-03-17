@@ -16,17 +16,27 @@ body {
   justify-content: space-between;
 }
 
+.nav-bar-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  align-items: center;
+  margin-right: 3%;
+}
+
 .header-title {
   margin: 0;
   align-self: center;
-  margin-left: 2%;
+  padding-left: 10px;;
   color: white;
 }
 
-.home-link {
+.home-link,
+.explore-link,
+.create-quiz-link,
+.login-link {
   color: white;
   margin-right: 4%;
-  align-self: center;
   text-decoration: none;
   visibility: hidden;
 }
@@ -206,7 +216,10 @@ body {
 
 @media only screen and (min-width: 769px) {
 
-  .home-link {
+  .home-link,
+  .explore-link,
+  .create-quiz-link,
+  .login-link {
     visibility: visible;
   }
 
