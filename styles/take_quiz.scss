@@ -89,9 +89,6 @@ body {
   margin-top: 15px;
 }
 
-.test {
-  display: flex;
-}
 
 #submit-quiz {
   border: none;
@@ -104,4 +101,11 @@ body {
   border-radius: 20px;
 }
 
+@media only screen and (min-width: 769px) {
+  body {
+    background-color: #f0f;
+  }
+
+
+}
 
