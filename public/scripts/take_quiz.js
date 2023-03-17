@@ -6,7 +6,7 @@ const createAllQuestionsContainerHeader = function (questionObj) {
     const newHeader = $("<header class='questionsHeader'>");
     const newHeaderDiv = $("<div class='header-div'>");
     const newQuestionCategory = $(`<span class='question-category'>`).text(`Category: ${category}`);
-    const newQuestionName = $("<p class='question-name'>").text(`${name}`);
+    const newQuestionName = $("<p class='question-name'>").text(`Quiz: ${name}`);
 
 
     newHeaderDiv.append(newQuestionName);
