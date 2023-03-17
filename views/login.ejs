@@ -52,26 +52,31 @@
   </header>
 
   <main>
-    <div class="headers">
-      <h1 class="sign-in-header">Sign In</h1>
-      <h2 class="sign-in-subheader">Sign in to start creating and trying out quizzes!</h2>
-    </div>
 
-    <div id="login-form">
-      <form id="login-info" method="POST" action="/login">
-        <div>
-          <label class="login-label" for="email">Email: </label>
-          <input type="email" class="login-email" name="email" placeholder="Email">
-        </div>
-        <div>
-          <label class="login-label" for="password">Password: </label>
-          <input type="password" class="login-password" name="password" placeholder="Password">
-        </div>
-        <div>
-          <button type="submit" class="login-button">Sign in</button>
-        </div>
+    <img class="login-page-background-img" src="images/quiz_app_login_img2.jpeg">
 
-      </form>
+    <div class="headers-and-form-wrapper">
+      <div class="headers">
+        <h1 class="sign-in-header">Sign In</h1>
+        <h2 class="sign-in-subheader">Sign in to start creating and trying out quizzes!</h2>
+      </div>
+
+      <div id="login-form">
+        <form id="login-info" method="POST" action="/login">
+          <div>
+            <label class="login-label" for="email">Email: </label>
+            <input type="email" class="login-email rounded-input" name="email" placeholder="Email">
+          </div>
+          <div>
+            <label class="login-label" for="password">Password: </label>
+            <input type="password" class="login-password rounded-input" name="password" placeholder="Password">
+          </div>
+          <div>
+            <button type="submit" class="login-button">Sign in</button>
+          </div>
+
+        </form>
+      </div>
     </div>
   </main>
 </body>

@@ -19,7 +19,6 @@ body {
 
   .headers {
     text-align: center;
-    margin-top: 200px;
   }
 
   .sign-in-header,
@@ -58,8 +57,27 @@ body {
     }
   }
 
+  .login-page-background-img {
+    height: 700px;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+  }
+
+  .headers-and-form-wrapper {
+    position: relative;
+    padding-top: 100px;
+    color: #0B1C1C ;
+  }
+
   .login-label {
     font-weight: 600;
+  }
+
+  .rounded-input {
+    padding: 8px;
+    border-radius: 20px;
+    border-width: 1px;
   }
 
   nav {
@@ -106,9 +124,8 @@ body {
         margin-left: 3px;
         background-color: #4C463A;
         border: none;
-        padding: 5px;
+        padding: 8px;
         color: $color-white;
-        padding: 5px;
         border-radius: 3px;
       }
     }
@@ -156,9 +173,8 @@ body {
           margin-left: 3px;
           background-color: #4C463A;
           border: none;
-          padding: 5px;
+          padding: 8px;
           color: $color-white;
-          padding: 5px;
           border-radius: 3px;
         }
       }
