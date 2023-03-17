@@ -28,7 +28,7 @@ body {
     color: $color-white;
     display: flex;
     justify-content: space-between;
-    background-color: $color-primary;
+    background-color: #0B1C1C;
     padding: 10px 0;
 
     .desktop-nav {
@@ -57,7 +57,7 @@ body {
     align-content: center;
     position: fixed;
     bottom: 0;
-    background-color: white;
+    background-color: #0B1C1C;
     width: 100%;
     border: 1px solid black;
     padding: 10px;
@@ -70,7 +70,7 @@ body {
       }
 
       &:visited {
-        color: $color-primary;
+        color: white;
       }
     }
   }
@@ -96,7 +96,7 @@ body {
       gap: 15px;
 
       .quizDisplay {
-        background-color: $color-primary;
+        background-color: #007373;
         width: 90%;
         border-radius: 3px;
         padding: 10px;
@@ -174,7 +174,7 @@ body {
     }
 
     #quiz-header {
-      background-color: $color-primary;
+      background-color: #0B1C1C;
       padding: 10px 0;
 
       .desktop-nav {
@@ -206,7 +206,7 @@ body {
         width: 100%;
 
         .quizDisplay {
-          background-color: $color-primary;
+          background-color: #007373;
           width: 45%;
           border-radius: 3px;
           padding: 10px;

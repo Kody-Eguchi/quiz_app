@@ -12,8 +12,9 @@ body {
   margin-right: 5%;
 }
 
+// #007373
 .take-quiz-page-header {
-  background-color: cornflowerblue;
+  background-color: #0B1C1C;
   width: 100%;
   height: 80px;
   display: flex;
@@ -70,7 +71,7 @@ body {
 .create-quiz-section {
   border: 2px solid black;
   border-radius: 3px;
-  background-color: cornflowerblue;
+  background-color: #007373;
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 15px;
@@ -119,7 +120,7 @@ body {
 
 .create-quiz-button {
   border: none;
-  background-color: cornflowerblue;
+  background-color: #4C463A;
   color: white;
   padding-right: 10px;
   padding-left: 10px;
@@ -144,7 +145,7 @@ body {
   padding-right: 5%;
   padding-top: 5%;
   padding-bottom: 5%;
-  background-color: cornflowerblue;
+  background-color: #007373;
 }
 
 #quiz-question-form {
@@ -188,7 +189,7 @@ body {
 
 .question-submit-button {
   border: none;
-  background-color: cornflowerblue;
+  background-color: #4C463A;
   color: white;
   padding-right: 10px;
   padding-left: 10px;
@@ -215,6 +216,7 @@ body {
   margin: 0 auto;
   bottom: 0;
   padding: 10px;
+  background-color: #0B1C1C;
 
   a {
     text-decoration: none;
@@ -224,7 +226,7 @@ body {
     }
 
     &:visited {
-      color: cornflowerblue;
+      color: white;
     }
   }
 }
