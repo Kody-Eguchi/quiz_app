@@ -10,7 +10,14 @@ const router  = express.Router();
 const db = require('../db/connection');
 const questionsApiRoutes = require('./questions-api');
 
-
+const getUserIdByEmail = function(email) {
+  const queryString = `SELECT id FROM users WHERE email = $1;`;
+  const queryParams = [email];
+  return db.query(queryString, queryParams)
+    .then(data => {
+      return data.rows[0].id;
+    })
+}
 
 router.get('/', (req, res) => {
   const query = `SELECT * FROM quizzes WHERE is_public = TRUE;`;
@@ -27,18 +34,28 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const { 'quiz-name': name, 'quiz-category': category, 'quiz-description': description, 'quiz-is_public': is_public, } = req.body;
-  const queryParams = [name, category, description, is_public];
-      db.query(`INSERT INTO quizzes (name, category, description, is_public)
-        VALUES ($1, $2, $3, $4)
-        RETURNING *
-        `, queryParams)
-        .then(function(result) {
-          res.status(200).json(result.rows[0]);
-        })
-        .catch((err) => {
-          res.status(500).send(err);
-        })
+  console.log(req.body);
+  const userEmail = req.cookies.username;
+  getUserIdByEmail(userEmail)
+  .then(data => {
+    console.log(data);
+    const { 'quiz-name': name, 'quiz-category': category, 'quiz-description': description, 'quiz-is_public': is_public, } = req.body;
+    const queryParams = [name, data, category, description, is_public];
+       return db.query(`INSERT INTO quizzes (name, creator_id, category, description, is_public)
+          VALUES ($1, $2, $3, $4, $5)
+          RETURNING *
+          `, queryParams)
+          .then(function(result) {
+            res.status(200).json(result.rows[0]);
+          })
+          .catch((err) => {
+            res.status(500).send(err);
+          })
+
+
+
+  });
+
 });
 
 
