@@ -44,7 +44,7 @@
     <section class="create-quiz-section">
       <form id="quiz-info-form" action='/create_new_quiz' method="POST">
         <label class="quiz-title-label" for="quiz-title-input">Title</label>
-        <input type="text" placeholder="Quiz Title" class="quiz-title-input" name="quiz-name">
+        <input type="text" placeholder="Quiz Title" class="quiz-title-input rounded-input" name="quiz-name">
 
         <div class="category-and-radio-buttons">
           <label class="quiz-category-label" for="category">Category</label>
@@ -84,7 +84,7 @@
 
         <div class="quiz-description-input">
           <label class="quiz-description-label" for="quiz-description">Descripton</label>
-          <textarea id="quiz-description" placeholder="Quiz Description Here..." name="quiz-description"></textarea>
+          <textarea id="quiz-description" class="rounded-input" placeholder="Quiz Description Here..." name="quiz-description"></textarea>
         </div>
 
         <div class="quiz-is-public-input">
@@ -109,27 +109,27 @@
   <!-- QUESTION FORM -->
   <div>
 
-    <h2 class="create-questions-header">Create questions for your quiz!</h2>
+    <h2 class="create-questions-header">Add some questions to your quiz!</h2>
 
     <section class="create-question-section">
       <form id="quiz-question-form" action="/create_new_quiz" method="POST">
 
         <div class="question-input-div">
           <label class="quiz-question-label" for="question-input">Question</label>
-          <input name='question' type="text" placeholder="Write your question here..." class="question-form">
+          <input name='question' type="text" placeholder="Write your question here..." class="question-form rounded-input">
         </div>
 
         <div class="question-answer-options-div">
           <label class="quiz-answer-options-label" for="answers">Answer Options</label>
-          <input name="option1" type="text" placeholder="Write answer option 1..." class="question-form">
-          <input name="option2" type="text" placeholder="Write answer option 2..." class="question-form">
-          <input name="option3" type="text" placeholder="Write answer option 3..." class="question-form">
-          <input name="option4" type="text" placeholder="Write answer option 4..." class="question-form">
+          <input name="option1" type="text" placeholder="Write answer option 1..." class="question-form rounded-input">
+          <input name="option2" type="text" placeholder="Write answer option 2..." class="question-form rounded-input">
+          <input name="option3" type="text" placeholder="Write answer option 3..." class="question-form rounded-input">
+          <input name="option4" type="text" placeholder="Write answer option 4..." class="question-form rounded-input">
         </div>
 
         <div class="question-correct-answer-div">
           <label class="quiz-correct-answer-label" for="answers">Correct Answer</label>
-          <input name="correct-answer" type="text" placeholder="Correct answer here..." class="question-form">
+          <input name="correct-answer" type="text" placeholder="Correct answer here..." class="question-form rounded-input">
         </div>
 
         <button class="question-submit-button" type="submit">Add</button>
