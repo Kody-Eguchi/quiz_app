@@ -47,7 +47,6 @@ router.get('/:quiz_result_id', (req, res) => {
 
   })
   .then(data => {
-    console.log(data.rows);
     res.json(data.rows);
   }
   )

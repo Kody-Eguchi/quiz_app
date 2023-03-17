@@ -37,11 +37,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log(req.body);
   const userEmail = req.cookies.username;
   getUserIdByEmail(userEmail)
   .then(data => {
-    console.log(data);
     const { 'quiz-name': name, 'quiz-category': category, 'quiz-description': description, 'quiz-is_public': is_public, } = req.body;
     const queryParams = [name, data, category, description, is_public];
        return db.query(`INSERT INTO quizzes (name, creator_id, category, description, is_public)

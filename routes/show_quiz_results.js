@@ -7,7 +7,6 @@ router.get('/:quiz_result_id', (req, res) => {
 });
 
 router.get('/:quiz_result_id/json', (req, res) => {
-  console.log(req.body);
   res.json(req.body);
 })
 

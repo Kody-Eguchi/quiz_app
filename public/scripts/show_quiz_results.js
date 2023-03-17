@@ -92,7 +92,6 @@ $(() => {
     url: `/api/quiz_results/${quizId}`
   })
     .then(quizResultObj => {
-      // console.log(quizResultObj[0]);
       const $quizResultDisplay = createQuizResultElement(quizResultObj[0]);
       $('.quiz-result-display-container').prepend($quizResultDisplay);
     })

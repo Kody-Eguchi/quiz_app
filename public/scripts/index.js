@@ -73,7 +73,6 @@ $(() => {
     url: '/api/quizzes'
   })
   .done((response) => {
-    console.log(response)
     for (const quiz of response.quizzes) {
       const quizElement = createQuizElement(quiz)
       appendToBody(quizElement);

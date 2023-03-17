@@ -142,7 +142,6 @@ $(() => {
     url: `http://localhost:8080/api/questions/${quiz_id}`
   })
   .then(data => {
-    console.log(data.questions);
     renderQuestionElement(data.questions);
   })
 

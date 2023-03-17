@@ -89,7 +89,6 @@ const markQuiz = async function(currentUserEmail, obj) {
         numOfAttempt++;
         const result = Math.floor(correctAnswersCount/(correctAnswersCount + incorrectAnswersCount) * 100);
         const queryParams = [quizId, userId, correctAnswersCount, incorrectAnswersCount, result, numOfAttempt];
-        console.log('queryParams', queryParams)
         const queryString = `
          INSERT INTO quiz_results (quiz_id, participant_id, number_of_correct_answer, number_of_wrong_answer, result, num_of_attempt)
          VALUES ($1, $2, $3, $4, $5, $6);

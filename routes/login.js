@@ -19,7 +19,6 @@ router.post('/', (req, res) => {
     }
 
     res.cookie('username', email)
-    console.log("Set Cookie");
     res.redirect('/');
   })
   .catch(err => {

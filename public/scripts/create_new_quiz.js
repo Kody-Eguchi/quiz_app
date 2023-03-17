@@ -1,5 +1,5 @@
 $(() => {
-  //HIDE QUESTION FOMR AS DEFAULT
+  //HIDE QUESTION FORM AS DEFAULT
   $('#quiz-question-form').hide();
   $('.create-questions-header').hide();
   $('.create-question-section').hide();
