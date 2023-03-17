@@ -96,6 +96,14 @@ body {
             border-radius: 3px;
             background-color: $color-grey-1;
 
+            .quizCreatorName {
+              font-size: 0.8rem;
+            }
+
+            .quizNumOfQuestions {
+              font-size: 0.8rem;
+            }
+
             a {
               text-decoration: none;
 

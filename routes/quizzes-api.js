@@ -19,8 +19,11 @@ const getUserIdByEmail = function(email) {
     })
 }
 
+
+
+
 router.get('/', (req, res) => {
-  const query = `SELECT * FROM quizzes WHERE is_public = TRUE;`;
+  const query = `SELECT quizzes.id, creator_id, created_at, description, category, quizzes.name, num_of_question, is_public, users.name AS username FROM quizzes JOIN users ON users.id =  creator_id WHERE is_public = TRUE;`;
   db.query(query)
     .then(data => {
       const quizzes = data.rows;

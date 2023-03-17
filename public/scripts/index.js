@@ -1,7 +1,7 @@
 const createQuizElement = function(quiz) {
   // variables from user object to be used in object
   const quizId = quiz.id;
-  const userId = quiz.creator_id;
+  const username = quiz.username;
   const name = quiz.name;
   const category = quiz.category;
   const description = quiz.description;
@@ -30,7 +30,7 @@ const createQuizElement = function(quiz) {
   const newFooterDiv = $("<div>");
   // changed it to dynamic
   const newQuizNumOfQuestions = $("<p class='quizNumOfQuestions'>").text( `Total Questions: ${numOfQuestions}`);
-  const newQuizCreatorName = $("<p class='quizCreatorName'>").text(`Creator ID: ${userId}`);
+  const newQuizCreatorName = $("<p class='quizCreatorName'>").text(`Creator ID: ${username}`);
   const newShareBtn = $(`<i class="fa-solid fa-share" class="share-btn">`);
   const newUrlBox = $(`<input class='urlBox' value="http://localhost:8080/take_quiz/${quizId}">`);
   const newRedirecBtn = $(`<a href="http://localhost:8080/take_quiz/${quizId}">`);
