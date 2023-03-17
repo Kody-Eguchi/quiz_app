@@ -1,0 +1,169 @@
+// COLOR PALLETTE
+$color-primary:cornflowerblue;
+$color-secondary:darkblue;
+$color-black : black;
+$color-white: white;
+$color-grey0: #f8f8f8;
+$color-grey-1: #dbe1e8;
+$color-grey-2: #b2becd;
+$color-grey-3: #6c7983;
+$color-grey-4: #454e56;
+$color-grey-5: #2a2e35;
+$color-grey-6: #12181b;
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+
+  #login-header {
+
+    h1 {
+      padding: 10px;
+      margin: 0;
+    }
+
+    color: $color-white;
+    display: flex;
+    justify-content: space-between;
+    background-color: $color-primary;
+    padding: 10px 0;
+
+    .desktop-nav {
+      visibility: hidden;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-right: 3%;
+
+      a {
+        color: white;
+        margin-right: 4%;
+        align-self: center;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .temp-text {
+    margin-left: 40%;
+    margin-top: 300px;
+  }
+
+  .login-label {
+    font-weight: 600;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+
+    a {
+      text-decoration: none;
+
+      i {
+        font-size: 2rem;
+      }
+
+      &:visited {
+        color: $color-primary;
+      }
+    }
+  }
+
+  #login-info {
+    padding: 10px;
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    margin: 0 auto;
+
+
+    div {
+
+      padding: 5px;
+      display: inline-block;
+      text-align: center;
+
+      button {
+        margin-left: 3px;
+        background-color: $color-primary;
+        border: none;
+        padding: 5px;
+        color: $color-white;
+        padding: 5px;
+        border-radius: 3px;
+      }
+    }
+
+
+  }
+
+}
+
+
+@media only screen and (min-width: 769px) {
+  body {
+    // background-color: #f0f;
+
+
+    nav {
+      visibility: hidden;
+    }
+
+    #login-header {
+      background-color: $color-primary;
+      padding: 10px 0;
+
+      .desktop-nav {
+        visibility: visible;
+      }
+    }
+
+
+    #login-info {
+      padding: 10px;
+      display: flex;
+      width: 80%;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+      margin: 0 auto;
+
+
+      div {
+        padding: 5px;
+        display: inline-block;
+
+        button {
+          margin-left: 3px;
+          background-color: $color-primary;
+          border: none;
+          padding: 5px;
+          color: $color-white;
+          padding: 5px;
+          border-radius: 3px;
+        }
+      }
+
+
+    }
+
+
+
+
+
+
+  }
+}
