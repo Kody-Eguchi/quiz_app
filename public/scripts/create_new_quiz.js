@@ -1,6 +1,8 @@
 $(() => {
   //HIDE QUESTION FOMR AS DEFAULT
   $('#quiz-question-form').hide();
+  $('.create-questions-header').hide();
+  $('.create-question-section').hide();
 
   let quiz_id;
 
@@ -17,8 +19,12 @@ $(() => {
     }).then((newQuiz) => {
       //QUIZ FORM SLIDEUP AFTER SUBMISSION
       $('#quiz-info-form').slideUp();
+      $('.create-quiz-section').hide();
+      $('.create-quiz-header').hide();
       //QUESTIONS CREATION FORM SLIDEDOWN UPON QUIZ FORM SUBMISSION
       $('#quiz-question-form').slideDown();
+      $('.create-questions-header').slideDown();
+  $('.create-question-section').slideDown();
       quiz_id = newQuiz.id;
     }).catch((err) => {
       res.status(500).send(err);
