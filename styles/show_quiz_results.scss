@@ -23,10 +23,20 @@ main {
   color: white;
 }
 
-.home-link {
+.nav-bar-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-right: 3%;
+}
+
+.home-link,
+.explore-link,
+.create-quiz-link,
+.login-link {
   color: white;
   margin-right: 4%;
-  align-self: center;
   text-decoration: none;
   visibility: hidden;
 }
@@ -102,7 +112,10 @@ main {
 
 @media only screen and (min-width: 769px) {
 
-  .home-link {
+  .home-link,
+  .explore-link,
+  .create-quiz-link,
+  .login-link {
     visibility: visible;
   }
 
