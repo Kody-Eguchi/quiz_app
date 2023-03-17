@@ -11,7 +11,20 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/login.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!--GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E
+  <link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+    rel="stylesheet">
+
+
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
@@ -21,18 +34,38 @@
 </head>
 
 <body>
-  <header>
-      <h1>Quiz App</h1>
+  <nav>
+    <a href="/"><i class="fa-solid fa-house"></i></a>
+    <a href="/explore"><i class="fa-solid fa-magnifying-glass"></i></a>
+    <a href="/create_new_quiz"><i class="fa-solid fa-plus"></i></a>
+    <a href="/login"><i class="fa-solid fa-user"></i></a>
+  </nav>
+  <header id="login-header">
+    <h1>Quiz App</h1>
+    <div class="desktop-nav">
+      <a href="/">Home</a>
+      <a href="/explore">Explore</a>
+      <a href="/create_new_quiz">Create</a>
+      <a href="/login">Login</a>
+    </div>
+
   </header>
 
   <main>
     <div id="login-form">
       <form id="login-info" method="POST" action="/login">
-        <label for="email">Email</label>
-        <input type="email" class="login-email" name="email" placeholder="Email">
-        <label for="password">Password</label>
-        <input type="password" class="login-password" name="password" placeholder="Password">
-        <button type="submit" class="login-button">Sign in</button>
+        <div>
+          <label for="email">Email: </label>
+          <input type="email" class="login-email" name="email" placeholder="Email">
+        </div>
+        <div>
+          <label for="password">Password: </label>
+          <input type="password" class="login-password" name="password" placeholder="Password">
+        </div>
+        <div>
+          <button type="submit" class="login-button">Sign in</button>
+        </div>
+
       </form>
     </div>
   </main>
