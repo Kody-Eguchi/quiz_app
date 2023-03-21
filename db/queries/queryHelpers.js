@@ -62,43 +62,37 @@ const getNumOfAtteptByUser = function(userId, quizId) {
 
 //MARK ANSWERED QUESTIONS AND STORE DATA INTO QUIZ_RESULTS TABLE
 const markQuiz = async function(currentUserEmail, obj) {
+    const getCorrectAnswerPromises = Object.entries(obj).map(([question_id]) => {
+      return getCorrectAnswer(question_id);
+    });
+    const givenAnswers = Object.entries(obj).map(([_, given_answer]) => given_answer);
+    const correctAnswers = await Promise.all(getCorrectAnswerPromises);
 
-  const getCorrectAnswerPromises = Object.entries(obj).map(([question_id]) => {
-    return getCorrectAnswer(question_id)
-  })
-
-  const givenAnswers =  Object.entries(obj).map(([_,given_answer]) => given_answer)
-
-  const { correctAnswersCount, incorrectAnswersCount } = await Promise.all(getCorrectAnswerPromises).then((correctAnswers) => {
     let correctAnswersCount = 0;
     let incorrectAnswersCount = 0;
 
-    for (let i = 0; i <  correctAnswers.length; i++) {
-      correctAnswers[i].includes(givenAnswers[i]) ? correctAnswersCount++ : incorrectAnswersCount++
+    for (let i = 0; i < correctAnswers.length; i++) {
+      correctAnswers[i].includes(givenAnswers[i]) ? correctAnswersCount++ : incorrectAnswersCount++;
     }
-    return { correctAnswersCount, incorrectAnswersCount }
-  })
 
-   const quizIdArr = Object.keys(obj);
+    const quizIdArr = Object.keys(obj);
+    const quizId = await getQuizId(quizIdArr[0]);
+    const userId = await getUserIdByEmail(currentUserEmail);
 
-  return getQuizId(quizIdArr[0]).then(quizId => {
+    let numOfAttempt = await getNumOfAtteptByUser(userId, quizId);
+    numOfAttempt = Number(numOfAttempt) + 1;
 
-  getUserIdByEmail(currentUserEmail)
-    .then((userId) => {
-      getNumOfAtteptByUser(userId, quizId)
-      .then((numOfAttempt) => {
-        numOfAttempt++;
-        const result = Math.floor(correctAnswersCount/(correctAnswersCount + incorrectAnswersCount) * 100);
-        const queryParams = [quizId, userId, correctAnswersCount, incorrectAnswersCount, result, numOfAttempt];
-        const queryString = `
-         INSERT INTO quiz_results (quiz_id, participant_id, number_of_correct_answer, number_of_wrong_answer, result, num_of_attempt)
-         VALUES ($1, $2, $3, $4, $5, $6);
-       `;
-        return db.query(queryString, queryParams)
-      });
-    })
-  });
+    const result = Math.floor(correctAnswersCount / (correctAnswersCount + incorrectAnswersCount) * 100);
+    const queryParams = [quizId, userId, correctAnswersCount, incorrectAnswersCount, result, numOfAttempt];
+    const queryString = `
+      INSERT INTO quiz_results (quiz_id, participant_id, number_of_correct_answer, number_of_wrong_answer, result, num_of_attempt)
+      VALUES ($1, $2, $3, $4, $5, $6);
+    `;
+
+    return db.query(queryString, queryParams);
+
 };
+
 
 // FIND LATEST QUIZ_RESULT_ID BASED ON USER_ID
 const findLatestQuizResultIdByUserID = function(userID) {
