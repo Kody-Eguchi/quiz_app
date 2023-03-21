@@ -112,8 +112,6 @@ const createShareBtnElement = function(para){
 };
 
 
-
-
 $(() => {
   const pathname = window.location.pathname.split('/')
   const quiz_id = pathname[pathname.length - 1]
@@ -124,30 +122,12 @@ $(() => {
   createShareBtnElement(shareUrl);
   $('#urlBox').hide();
 
-
   //SHARE URL BUTTON
   $('#share-btn').click(function(e){
     e.preventDefault();
     $('#urlBox').toggle();
-    // window.open(shareUrl);
-
-});
-
-
-
-  $.ajax({
-    method: 'GET',
-    url: `http://localhost:8080/api/questions/${quiz_id}`
-  })
-  .then(data => {
-    renderQuestionElement(data.questions);
-  })
-
-  $("#submit-quiz").on('click', function(e) {
-    // e.preventDefault();
-    // window.location.href = 'http://localhost:8080/show_quiz_results/6';
   });
 
-
-
-})
+  $.ajax({ method: 'GET', url: `http://localhost:8080/api/questions/${quiz_id}`})
+    .then(data => renderQuestionElement(data.questions))
+});

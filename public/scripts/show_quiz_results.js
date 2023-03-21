@@ -50,52 +50,28 @@ const createShareBtnElement = function(para){
   $('.share-btn-container').prepend(newUrlBox);
 };
 
-
-
 $(() => {
   const pathname = window.location.pathname.split('/');
   const quizId = pathname[pathname.length - 1];
-
 
   const shareUrl = `http://localhost:8080/show_quiz_results/${quizId}`;
   createShareBtnElement(shareUrl);
   $('#urlBox').hide();
 
-
   //SHARE URL BUTTON
   $('#share-btn').click(function(e){
     e.preventDefault();
     $('#urlBox').toggle();
-    // window.open(shareUrl);
+  });
 
-});
+  $.ajax({ method: 'GET', url: '/api/quiz_results'})
+    .then(data => console.log(data.rows))
+    .catch(err => console.log('Error: ', err))
 
-
-
-
-  $.ajax({
-    method: 'GET',
-    url: '/api/quiz_results',
-  })
-    .then(data => {
-      console.log(data.rows);
-    })
-    .catch(err => {
-      console.log('Error: ', err);
-    })
-
-
-
-
-  $.ajax({
-    method: 'GET',
-    url: `/api/quiz_results/${quizId}`
-  })
+  $.ajax({ method: 'GET', url: `/api/quiz_results/${quizId}`})
     .then(quizResultObj => {
       const $quizResultDisplay = createQuizResultElement(quizResultObj[0]);
       $('.quiz-result-display-container').prepend($quizResultDisplay);
     })
-    .catch(err => {
-      console.log('Error: ', err);
-    })
+    .catch(err => console.log('Error: ', err))
 })

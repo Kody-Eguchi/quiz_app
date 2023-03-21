@@ -47,9 +47,6 @@ router.post('/:quiz_id', (req, res) => {
   })
   ;
 
-//UPDATE num_of_question on quizzes table every time users add a question
-
-
 
 })
 module.exports = router;

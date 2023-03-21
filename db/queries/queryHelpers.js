@@ -1,17 +1,23 @@
-const express = require('express');
-const router  = express.Router();
-const db = require('../db/connection');
-// const cookieParser = require('cookie-parser');
+const db = require('../connection');
 
+const getUsers = () => {
+  return db.query('SELECT * FROM users;')
+    .then(data => {
+      return data.rows;
+    });
+};
 
+//query database to get all users
+const getAllUsers = function() {
+  return db.query(`SELECT * FROM users;`)
+  .then(res => {
+    return res.rows;
+  })
+  .catch(err => {
+    console.error("Error: ", err.message);
+  })
+};
 
-
-router.get('/', (req, res) => {
-  res.render('quiz_results');
-});
-
-
-/*****************HELPER FUNCTIONS*********************/
 //RETURN QUIZ ID BASED ON QUESTION ID
 const getQuizId = function(question_id){
   const queryString = `SELECT quiz_id FROM questions WHERE id = $1;`;
@@ -42,8 +48,7 @@ const getUserIdByEmail = function(email) {
     .then(data => {
       return data.rows[0].id;
     })
-}
-
+};
 
 //GET NUMBER OF ATTEPT BY USER_ID AND QUIZ_ID
 const getNumOfAtteptByUser = function(userId, quizId) {
@@ -53,13 +58,10 @@ const getNumOfAtteptByUser = function(userId, quizId) {
   .then(data => {
     return data.rows[0].count;
   })
-}
-
+};
 
 //MARK ANSWERED QUESTIONS AND STORE DATA INTO QUIZ_RESULTS TABLE
 const markQuiz = async function(currentUserEmail, obj) {
-
-
 
   const getCorrectAnswerPromises = Object.entries(obj).map(([question_id]) => {
     return getCorrectAnswer(question_id)
@@ -74,13 +76,12 @@ const markQuiz = async function(currentUserEmail, obj) {
     for (let i = 0; i <  correctAnswers.length; i++) {
       correctAnswers[i].includes(givenAnswers[i]) ? correctAnswersCount++ : incorrectAnswersCount++
     }
-
     return { correctAnswersCount, incorrectAnswersCount }
   })
 
    const quizIdArr = Object.keys(obj);
 
- return getQuizId(quizIdArr[0]).then(quizId => {
+  return getQuizId(quizIdArr[0]).then(quizId => {
 
   getUserIdByEmail(currentUserEmail)
     .then((userId) => {
@@ -95,15 +96,11 @@ const markQuiz = async function(currentUserEmail, obj) {
        `;
         return db.query(queryString, queryParams)
       });
-
     })
   });
-
-
 };
 
 // FIND LATEST QUIZ_RESULT_ID BASED ON USER_ID
-
 const findLatestQuizResultIdByUserID = function(userID) {
   const queryParams = [userID];
   const queryString = `SELECT quiz_results.id FROM quiz_results
@@ -128,33 +125,15 @@ const storeAnswers = function(obj) {
   `;
     return db.query(queryString, queryParams)
   })
+ };
 
-
- }
-
-/*****************END HELPER FUNCTIONS*********************/
-
-
-// URL should be wildcard /:id
-
-router.post('/:quiz_id', (req, res) => {
-  const submittedAnswers = req.body;
-  const {quiz_id} = req.params;
-  const userEmail = req.cookies.username;
-
-  markQuiz(userEmail, submittedAnswers)
-  .then(async () => {
-    await Promise.all(storeAnswers(submittedAnswers));
-    res.redirect(301, `/show_quiz_results/${quiz_id}`);
-
-  })
-  .catch(err => {
-    res.status(500);
-  });
-
-
-
-});
-
-
-module.exports = router;
+module.exports = {
+  getUsers,
+  getAllUsers,
+  getUserIdByEmail,
+  getQuizId,
+  getCorrectAnswer,
+  getNumOfAtteptByUser,
+  markQuiz,
+  storeAnswers
+};

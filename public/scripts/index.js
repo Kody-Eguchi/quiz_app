@@ -61,11 +61,6 @@ const appendToBody = function(quizElement) {
   $('.quiz-container').append(quizElement)
 };
 
-
-
-
-
-
 $(() => {
 
   $.ajax({

@@ -2,18 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 
-
-
-const getUserIdByEmail = function(email) {
-  const queryString = `SELECT id FROM users WHERE email = $1;`;
-  const queryParams = [email];
-  return db.query(queryString, queryParams)
-    .then(data => {
-      return data.rows[0].id;
-    })
-}
-
-
+const userQueries = require('../db/queries/queryHelpers');
 
 router.get('/', (req, res) => {
 
@@ -31,12 +20,10 @@ router.get('/', (req, res) => {
     });
 });
 
-
-
 router.get('/:quiz_result_id', (req, res) => {
   const { quiz_result_id } = req.params;
   const useremail = req.cookies.username;
-  getUserIdByEmail(useremail)
+  userQueries.getUserIdByEmail(useremail)
   .then(userId => {
     const queryString = `SELECT * FROM quiz_results
                           WHERE quiz_id = $1
@@ -44,16 +31,11 @@ router.get('/:quiz_result_id', (req, res) => {
                           ORDER BY completed_at DESC
                           LIMIT 1`;
     return db.query(queryString, [quiz_result_id, userId])
-
   })
   .then(data => {
     res.json(data.rows);
-  }
-  )
+  })
   .catch();
-
-
-
 });
 
 

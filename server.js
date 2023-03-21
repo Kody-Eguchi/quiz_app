@@ -38,13 +38,13 @@ const answeredQuestionsApiRoutes = require('./routes/answered_questions-api');
 const questionsApiRoutes = require('./routes/questions-api');
 
 
-const usersRoutes = require('./routes/users');
-const exploreRoutes = require('./routes/explore');
-const createNewQuizRoutes = require('./routes/create_new_quiz');
-const takeQuizRoutes = require('./routes/take_quiz');
-const loginRoutes = require('./routes/login');
-const quizResultRoutes = require('./routes/quiz_results');
-const showQuizResultRoutes = require('./routes/show_quiz_results');
+const usersRoutes = require('./routes/usersRouter');
+const exploreRoutes = require('./routes/exploreRouter');
+const createNewQuizRoutes = require('./routes/createNewQuizRouter');
+const takeQuizRoutes = require('./routes/takeQuizRouter');
+const loginRoutes = require('./routes/loginRouter');
+const quizResultRoutes = require('./routes/quizResultsRouter');
+const showQuizResultRoutes = require('./routes/showQuizResultsRouter');
 
 
 // Mount all resource routes

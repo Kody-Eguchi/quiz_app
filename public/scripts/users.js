@@ -2,20 +2,21 @@
 $(() => {
 
 
-  $('#fetch-users').on('click', () => {
-    $.ajax({
-      method: 'GET',
-      url: '/api/users'
-    })
-    .done((response) => {
-      const $usersList = $('#users');
-      $usersList.empty();
+  $(() => {
 
-      for(const user of response.users) {
-        $(`<li class="user">`).text(user.name).appendTo($usersList);
-      }
-    });
+
+    $('#signup-form').submit(function(e){
+      const $formData = $(this).serialize();
+      $.ajax({
+        method: 'POST',
+        url: '/users',
+        data: $formData
+      })
+    })
+
+
   });
+
 
 
 });
