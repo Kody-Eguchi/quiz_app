@@ -1,0 +1,19 @@
+<header id="quiz-header">
+  <h1>Quiz App</h1>
+  <div class="desktop-nav">
+    <a href="/">Home</a>
+    <a href="/explore">Explore</a>
+    <a href="/create_new_quiz">Create</a>
+    <% if(username){ %>
+    <form method="POST" action="/logout">
+      <span> Logged in as: <%= username %></span>
+      <button type="submit" id="logout">
+        Logout
+      </button>
+    </form>
+    <% } else{ %>
+    <a href="/login" id="login-btn">Login</a>
+    <% } %>
+  </div>
+
+</header>

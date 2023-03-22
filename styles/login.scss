@@ -67,14 +67,14 @@ body {
   .headers-and-form-wrapper {
     position: relative;
     padding-top: 100px;
-    color: #0B1C1C ;
+    color: #0B1C1C;
   }
 
   .login-email-input,
-    .login-password-input {
-      display: flex;
-      flex-direction: column;
-    }
+  .login-password-input {
+    display: flex;
+    flex-direction: column;
+  }
 
   .login-label {
     font-weight: 600;
@@ -133,6 +133,14 @@ body {
         color: $color-white;
         border-radius: 3px;
       }
+
+
+    }
+
+    a {
+      text-align: center;
+      text-decoration: none;
+      color: $color-white;
     }
 
 
@@ -178,6 +186,11 @@ body {
         }
       }
 
+      a {
+        text-align: center;
+        text-decoration: none;
+        color: $color-white;
+      }
 
     }
 

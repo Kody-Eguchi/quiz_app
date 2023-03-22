@@ -3,8 +3,16 @@ const router  = express.Router();
 const db = require('../db/connection');
 const userQueries = require('../db/queries/queryHelpers');
 
-router.get('/', (req, res) => {
-  res.render('quiz_results');
+router.get('/', async(req, res) => {
+  const userEmail = req.cookies.username;
+  if (!userEmail) {
+    return res.redirect('/login');
+  }
+  const username = await userQueries.getUserNameByEmail(userEmail);
+  const templatedVars ={
+    username: username
+  };
+  res.render('quiz_results', templatedVars);
 });
 
 router.post('/:quiz_id', (req, res) => {

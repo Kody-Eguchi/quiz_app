@@ -39,6 +39,17 @@ const getCorrectAnswer = function(question_id){
     });
 };
 
+//GET USER NAME BY EMAIL
+const getUserNameByEmail = function(email) {
+  const queryString = `SELECT name FROM users WHERE email = $1;`;
+  const queryParams = [email];
+  return db.query(queryString, queryParams)
+    .then(data => {
+      return data.rows[0].name;
+    })
+};
+
+
 
 //GET USER ID BY EMAIL
 const getUserIdByEmail = function(email) {
@@ -129,5 +140,6 @@ module.exports = {
   getCorrectAnswer,
   getNumOfAtteptByUser,
   markQuiz,
-  storeAnswers
+  storeAnswers,
+  getUserNameByEmail
 };

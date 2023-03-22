@@ -17,7 +17,7 @@ body {
   background-color: #ffffff;
   background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
 
-  #login-header {
+  #quiz-header {
 
     h1 {
       padding: 10px;
@@ -42,6 +42,20 @@ body {
         margin-right: 4%;
         align-self: center;
         text-decoration: none;
+      }
+
+      form {
+        text-align: center;
+        padding: 5px;
+
+
+
+        button {
+          margin-top: 10px;
+          border: none;
+          border-radius: 3px;
+          font-size: 0.9rem;
+        }
       }
     }
   }
@@ -122,12 +136,19 @@ body {
       visibility: hidden;
     }
 
-    #login-header {
+    #quiz-header {
       background-color: #0B1C1C;
       padding: 10px 0;
 
       .desktop-nav {
         visibility: visible;
+      }
+
+
+
+      h1 {
+        padding: 10px;
+        margin: 0;
       }
     }
 

@@ -1,9 +1,11 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
+const userQueries = require('../db/queries/queryHelpers');
 
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
   res.render('users');
+
 });
 
 router.post('/', (req, res) => {

@@ -75,11 +75,27 @@ app.use('/show_quiz_results', showQuizResultRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get('/', (req, res) => {
-  if (!req.cookies.username) {
-    res.redirect('/login');
+const userQueries = require('./db/queries/queryHelpers');
+
+app.get('/', async (req, res) => {
+
+
+  const userEmail = req.cookies.username;
+  if (!userEmail) {
+    return res.redirect('/login');
   }
-  res.render('index');
+  const username = await userQueries.getUserNameByEmail(userEmail);
+
+  const templatedVars ={
+    username: username
+  };
+  res.render('index', templatedVars);
+});
+
+app.post('/logout', (req, res) => {
+  console.log(req.cookies);
+  res.clearCookie('username');
+  res.redirect('/login');
 });
 
 app.listen(PORT, () => {

@@ -1,10 +1,13 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
+const userQueries = require('../db/queries/queryHelpers');
 
 
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
+
   res.render('login');
+
 });
 
 router.post('/', (req, res) => {
@@ -27,4 +30,10 @@ router.post('/', (req, res) => {
 
 
 })
+
+
+
+
+
+
 module.exports = router;

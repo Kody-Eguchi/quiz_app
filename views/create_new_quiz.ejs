@@ -17,7 +17,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+    rel="stylesheet">
 
 
   <script src="/vendor/jquery-3.0.0.js"></script>
@@ -27,15 +29,7 @@
 
 <body>
 
-  <header class="take-quiz-page-header">
-    <h1 class="header-title">Quiz App</h1>
-    <div class="nav-bar-links">
-      <a class="home-link" href="/">Home</a>
-      <a class="explore-link" href="/explore">Explore</a>
-      <a class="create-quiz-link" href="/create_new_quiz">Create</a>
-      <a class="login-link" href="/login">Login</a>
-    </div>
-  </header>
+  <%- include('partials/_header') %>
 
   <h2 class="create-quiz-header">Create your own quiz!</h2>
 
@@ -84,7 +78,8 @@
 
         <div class="quiz-description-input">
           <label class="quiz-description-label" for="quiz-description">Descripton</label>
-          <textarea id="quiz-description" class="rounded-input" placeholder="Quiz Description Here..." name="quiz-description"></textarea>
+          <textarea id="quiz-description" class="rounded-input" placeholder="Quiz Description Here..."
+            name="quiz-description"></textarea>
         </div>
 
         <div class="quiz-is-public-input">
@@ -116,7 +111,8 @@
 
         <div class="question-input-div">
           <label class="quiz-question-label" for="question-input">Question</label>
-          <input name='question' type="text" placeholder="Write your question here..." class="question-form rounded-input">
+          <input name='question' type="text" placeholder="Write your question here..."
+            class="question-form rounded-input">
         </div>
 
         <div class="question-answer-options-div">
@@ -129,7 +125,8 @@
 
         <div class="question-correct-answer-div">
           <label class="quiz-correct-answer-label" for="answers">Correct Answer</label>
-          <input name="correct-answer" type="text" placeholder="Correct answer here..." class="question-form rounded-input">
+          <input name="correct-answer" type="text" placeholder="Correct answer here..."
+            class="question-form rounded-input">
         </div>
 
         <button class="question-submit-button" type="submit">Add</button>
